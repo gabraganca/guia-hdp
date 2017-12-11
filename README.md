@@ -4,9 +4,28 @@
 
 ### Data Ingestion
 
-* Import data from a table in a relational database into HDFS 
+* Importe dados de uma tabela em uma base de dados relacional para o HDFS
+ 
+  Para isso, nós devemos usar o [`sqoop import`][SQOOP-IMPORT] e sempre devemos usar o argumento `--connect` que vai permitir que o `sqoop` conecte ao banco de dados. Por exemplo:
+  ```
+  $ sqoop import --connect jdbc:mysql://database.example.com/employees
+  ```
+  No exemplo acima, o `sqoop` conectará a uma base de dados MySQL nomeada `employees` na máquina `host` `database.example.com`.
+  
+  Podemos listar o nome de todas as base de dados disponíveis com `sqoop list-databases` e as tabelas na base de dados usando o `sqoop lista-tables`. 
+  
+  É provável que seja necessário fornecer um nome de usuário (`--username`) e senha para o `sqoop`. Para o nome de usuários, nós usamos `--username` e para a senha, nós usamos diretamente via `--password` ou usando um arquivo com o `--password-file` (mais seguro).
+  
+  O `sqoop` nos permite salvar a tabela no HDFS nos formatos 
+    * Texto (padrão): `--as-textfile`
+    * Avro: `--as-avrodatafile`
+    * SequenceFiles: `--as-sequencefile`
+    * Parquet: `--as-parquetfile`
+    
+  Para maiores informações, recomendo a leitura da [documentação][SQOOP-IMPORT].
+  
+[SQOOP-IMPORT]: http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_literal_sqoop_import_literal
 
-  [SQOOP-IMPORT](http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_literal_sqoop_import_literal)
 
 
 * Import the results of a query from a relational database into HDFS 
