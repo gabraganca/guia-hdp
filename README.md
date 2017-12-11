@@ -3,8 +3,7 @@
 ## Objetivos
 
 1. [Ingestão de Dados](#ingestão-de-dados)
-  * [Importação de tabela de um RDBMS para o HDFS usando o Sqoop](#importe-dados-de-uma-tabela-em-uma-base-de-dados-relacional-para-o-hdfs)
-    
+   * [Importação de tabela de um RDBMS para o HDFS usando o Sqoop](#importe-dados-de-uma-tabela-em-uma-base-de-dados-relacional-para-o-hdfs)
 2. [Data Transformation](#data-transformation)
 3. [Data Analysis](#data-analysis)
 
