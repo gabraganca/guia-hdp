@@ -2,7 +2,7 @@
 
 ## Objetivos
 
-### Data Ingestion
+### Ingestão de Dados
 
 * Importe dados de uma tabela em uma base de dados relacional para o HDFS
  
@@ -12,9 +12,11 @@
   ```
   No exemplo acima, o `sqoop` conectará a uma base de dados MySQL nomeada `employees` na máquina `host` `database.example.com`.
   
-  Podemos listar o nome de todas as base de dados disponíveis com `sqoop list-databases` e as tabelas na base de dados usando o `sqoop lista-tables`. 
+  Podemos listar o nome de todas as base de dados disponíveis com `sqoop list-databases` e as tabelas na base de dados usando o `sqoop list-tables`. 
   
-  É provável que seja necessário fornecer um nome de usuário (`--username`) e senha para o `sqoop`. Para o nome de usuários, nós usamos `--username` e para a senha, nós usamos diretamente via `--password` ou usando um arquivo com o `--password-file` (mais seguro).
+  Na importação, o nome da tabela deve ser pasada usando o argumento `--table`. Caso deseje, é possível importar todas as tabelas do banco de dados usando `sqoop import--all-tables`.
+  
+  É provável que seja necessário fornecer um nome de usuário (`--username`) e senha para o `sqoop`. Para o nome de usuários, nós usamos `--username` e para a senha, nós usamos diretamente via `--password` ou usando um arquivo com o `--password-file` (mais seguro).
   
   O `sqoop` nos permite salvar a tabela no HDFS nos formatos 
     * Texto (padrão): `--as-textfile`
