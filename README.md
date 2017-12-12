@@ -116,8 +116,8 @@ $ sqoop import \
       --username fulano \
       --password 123456 \
       --table vendas \
-      --hive-import
-      --create-hive-table
+      --hive-import \
+      --create-hive-table \
       --hive-table ecommerce.vendas
 ```
 
