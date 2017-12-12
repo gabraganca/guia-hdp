@@ -10,6 +10,7 @@ em seu [site][site].
 
 1. [Ingestão de Dados](#ingestão-de-dados)
    * [Importação de tabela de um RDBMS para o HDFS usando o Sqoop](#importe-dados-de-uma-tabela-em-uma-base-de-dados-relacional-para-o-hdfs)
+   * Importe os resultados de uma *query* a um banco de dados para o HDFS
 2. [Data Transformation](#data-transformation)
 3. [Data Analysis](#data-analysis)
 
@@ -66,9 +67,30 @@ Para maiores informações, recomendo a leitura da [documentação][SQOOP-IMPORT
 
 [SQOOP-IMPORT]: http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_literal_sqoop_import_literal
 
-#### Import the results of a query from a relational database into HDFS
+#### Importe os resultados de uma *query* a um banco de dados para o HDFS
 
-  [FREE-FORM QUERY IMPORTS](http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_free_form_query_imports)
+Podemos realizar uma *query* em um banco de dados relacional e importar o
+resultado direto para o HDFS. Para isso, nós precisaremos usar dois argumentos:
+
+* `--query`, em que passamos a `query` para o `sqoop`; e
+* `--target-dir`, em que passamos o diretório no HDFS em que os dados serão
+  gravados.
+
+Por exemplo:
+
+```
+$ sqoop import \
+      --connect jdbc:mysql://database.example.com/ecommerce.db \
+      --username fulano \
+      --password 123456 \
+      --query 'SELECT vendas.*, fornecedores.* FROM vendas JOIN fornecedores on (vendas.forn_id == fornecedores.id) WHERE vendas.preco > 5000' \
+      --target-dir /user/fulano/meus-resultados
+```
+
+A [documentação][FREE-FORM QUERY IMPORTS] mostra alguns argumentos extras para
+casos especiais.
+
+[FREE-FORM QUERY IMPORTS]: http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_free_form_query_imports
 
 
 #### Import a table from a relational database into a new or existing Hive table
