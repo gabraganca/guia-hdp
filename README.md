@@ -1,5 +1,11 @@
 # Guia para Certificação HDPCD da Hortonworks
 
+O material abaixo foi inspirado na guia de objetivos fornecido pela Hortonworks
+em seu [site][site].
+
+
+[site]: https://br.hortonworks.com/services/training/certification/exam-objectives/#hdpcd
+
 ## Objetivos
 
 1. [Ingestão de Dados](#ingestão-de-dados)
