@@ -11,6 +11,7 @@ em seu [site][site].
 1. [Ingestão de Dados](#ingestão-de-dados)
    * [Importação de tabela de um RDBMS para o HDFS usando o Sqoop](#importe-dados-de-uma-tabela-em-uma-base-de-dados-relacional-para-o-hdfs)
    * [Importe os resultados de uma *query* a um banco de dados para o HDFS](#importe-os-resultados-de-uma-query-a-um-banco-de-dados-para-o-hdfs)
+   * [Importe uma tabela de um banco de dados relacional para uma tabela do Hive](#importe-uma-tabela-de-um-banco-de-dados-relacional-para-uma-tabela-do-hive)
 2. [Data Transformation](#data-transformation)
 3. [Data Analysis](#data-analysis)
 
