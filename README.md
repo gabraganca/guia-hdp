@@ -93,9 +93,36 @@ casos especiais.
 [FREE-FORM QUERY IMPORTS]: http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_free_form_query_imports
 
 
-#### Import a table from a relational database into a new or existing Hive table
+#### Importe uma tabela de um banco de dados relacional para uma tabela do Hive
 
-  [IMPORTING DATA INTO HIVE](http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_importing_data_into_hive)
+Para importar uma tabela direto para o Hive, nós podemos usar os seguintes
+argumentos:
+
+* `--hive-import`: este parâmetro é obrigatório.
+* `--create-hive-table`: opcional. Cria a tabela caso esta não exista. Se
+  existir, retorna um erro.
+* `--hive-overwrite`: opcional. Sobrescreve uma tabela caso esta já exista.
+* `--hive-table <db_name>.<table_name>`: opcional. Informa em qual banco de
+  dados e em qual tabela salvar.
+
+Vamos ver um exemplo:
+
+```
+$ sqoop import \
+      --connect jdbc:mysql://database.example.com/ecommerce.db \
+      --username fulano \
+      --password 123456 \
+      --table vendas \
+      --hive-import
+      --create-hive-table
+      --hive-table ecommerce.vendas
+```
+
+Para maiores detalhes, recomendo a [documentação][IMPORTING DATA INTO HIVE] e
+[este tutorial][sqoop-hive].
+
+[IMPORTING DATA INTO HIVE]: http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_importing_data_into_hive
+[sqoop-hive]: https://dzone.com/articles/sqoop-import-data-from-mysql-to-hive
 
 
 #### Insert or update data from HDFS into a table in a relational database
