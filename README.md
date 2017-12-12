@@ -1,5 +1,7 @@
 # Guia para Certificação HDPCD da Hortonworks
 
+[![Em andamento](https://img.shields.io/badge/Em%20andamento-20%25-red.svg)]()
+
 O material abaixo foi inspirado na guia de objetivos fornecido pela Hortonworks
 em seu [site][site].
 
