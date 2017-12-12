@@ -16,7 +16,7 @@ usar o argumento `--connect` que vai permitir que o `sqoop` se conecte ao banco
 de dados. Por exemplo:
 ```
 $ sqoop import \
-      --connect "jdbc:mysql://database.example.com/employees"
+      --connect jdbc:mysql://database.example.com/employees
 ```
 
 No exemplo acima, o `sqoop` se conectará a uma base de dados MySQL nomeada
@@ -39,6 +39,22 @@ O `sqoop` nos permite salvar a tabela no HDFS nos formatos
 * Avro: `--as-avrodatafile`
 * SequenceFiles: `--as-sequencefile`
 * Parquet: `--as-parquetfile`
+
+Vamos ver um exemplo de como importar uma tabela chamada `vendas` de um banco
+de dados MySQL chamado `ecommerce.db` para dentro do HDFS not formato texto:
+
+```
+$ sqoop import \
+      --connect jdbc:mysql://database.example.com/ecommerce.db \
+      --username fulano \
+      --password 123456 \
+      --table vendas \
+      --as-textfile
+```
+
+Note que o último argumento, `--as-textfile`, não é obrigatório já que o
+`sqoop` importa para formato texto por padrão. Uma pasta chamada `vendas` será
+criada na pasta do usuário no HDFS.
 
 Para maiores informações, recomendo a leitura da [documentação][SQOOP-IMPORT].
 
