@@ -14,6 +14,7 @@ em seu [site][site].
    * [Importação de tabela de um RDBMS para o HDFS usando o Sqoop](#importe-dados-de-uma-tabela-em-uma-base-de-dados-relacional-para-o-hdfs)
    * [Importe os resultados de uma *query* a um banco de dados para o HDFS](#importe-os-resultados-de-uma-query-a-um-banco-de-dados-para-o-hdfs)
    * [Importe uma tabela de um banco de dados relacional para uma tabela do Hive](#importe-uma-tabela-de-um-banco-de-dados-relacional-para-uma-tabela-do-hive)
+   * Insira ou atualize dados do HDFS para um tabela de uma banco de dados relacional
 2. [Data Transformation](#data-transformation)
 3. [Data Analysis](#data-analysis)
 
@@ -128,9 +129,32 @@ Para maiores detalhes, recomendo a [documentação][IMPORTING DATA INTO HIVE] e
 [sqoop-hive]: https://dzone.com/articles/sqoop-import-data-from-mysql-to-hive
 
 
-#### Insert or update data from HDFS into a table in a relational database
+#### Insira ou atualize dados do HDFS para um tabela de uma banco de dados relacional
 
-  [SQOOP-EXPORT](http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_literal_sqoop_export_literal)
+Além de inserir tabelas de um banco de dados relaciona para o HDFS, o `sqoop`
+também nos permite fazer o processo contrário. vamos ver agora como exportar
+uma tabela do HDFS para um banco de dados.
+
+Ao invés do `import` nós devemos suar o `export`, e alguns dos argumentos são os mesmos, tais quais
+`--connect <jdbc-uri>`, `--username` e `--password`. Vamos ver um exemplo:
+
+```
+$ sqoop export \
+      --connect jdbc:mysql://database.example.com/ecommerce.db \
+      --username fulano \
+      --password 123456 \
+      --table vendas \
+      --export-dir /user/fulano/vendas
+```
+
+O comando acima vai exportar uma tabela localizada no diretório
+`/user/fulano/vendas` no HDFS para uma banco de dados relacional MySQL chamado
+`ecommerce.db`.
+
+O comando `export` aceita outros argumentos e recomendo a
+[documentação][SQOOP-EXPORT] para uma melhor explicaçação.
+
+[SQOOP-EXPORT]: http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_literal_sqoop_export_literal
 
 
 #### Given a Flume configuration file, start a Flume agent
