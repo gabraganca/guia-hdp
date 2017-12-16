@@ -16,6 +16,7 @@ em seu [site][site], e ainda está em fase de elaboração.
    * [Inicie um agente do Flume a partir de um arquivo de configuração](#inicie-um-agente-do-flume-a-partir-de-um-arquivo-de-configura%C3%A7%C3%A3o)
    * [Configure um `channel` de memória com um tamanho específico](#configure-um-channel-de-mem%C3%B3ria-com-um-tamanho-espec%C3%ADfico)
 2. Transformação de Dados
+  * Escreva execute um script do Pig
 3. Análise de Dados
 
 ### Ingestão de Dados
@@ -221,9 +222,49 @@ exemplifica os outros tipos de `channels`.
 
 ### Transformação de Dados
 
-#### Write and execute a Pig script
+#### Escreva a execute um script do Pig
 
-  [LEARN MORE](https://pig.apache.org/docs/r0.15.0/start.html#run)
+O Pig é uma ferramenta de alto nível para processamento de dados. Ele nos
+permite processar dados de forma mais prática do que se fôssemos usar
+diretamente o *MapReduce*.
+
+Nós podemos processar dados através um um ambiente REPL
+(*Read-Eval-Print-Loop*) ichamado *Grunt* ou através de execução de scripts
+criados no nosso editor de preferência. Vamos ver aqui um exemplo simples de
+script e como executá-lo, mas saiba que é possível rodar o script linha a linha
+no ambiente REPL.
+
+Vamos ver um script simples obtido da [documentação][pig_run]:
+
+```
+/* meu_script.pig
+Meu script é simples.
+É composto apenas de três declarações
+*/
+
+A = LOAD 'vendas' USING PigStorage() AS (item:chararray, preco:float, qtde:int); -- carregando os dados
+B = FOREACH A GENERATE item;  -- transformando os dados
+DUMP B;  -- obtendo os resultados
+```
+
+As quatro primeiras linhas são um comentário. Na sexta linha, nós carregamos
+uma tabela chamada `vendas` em que três colunas são definidas: `item` definida
+como uma *string*, `preco` definida como um número do tipo *float* e `qtde`
+definida como um número inteiro. Na sétima linha, executamos um *loop* na
+tabela carregada em `A` e executamos uma operação que, neste caso, é só
+retornar o valor de `item`. Na última linha, nós retornamos o resultado da
+relação `B`.
+
+É importante salientar, que no Pig, `A` e `B` não são chamados de variáveis,
+mas de relações.
+
+Para executar este script, nós devemos executar o seguinte commando:
+
+```
+$ pig meu_script.pig
+```
+
+[pig_run]: https://pig.apache.org/docs/r0.15.0/start.html#run
 
 
 #### Load data into a Pig relation without a schema
