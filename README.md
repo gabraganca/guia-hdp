@@ -16,6 +16,7 @@ em seu [site][site].
    * [Importe uma tabela de um banco de dados relacional para uma tabela do Hive](#importe-uma-tabela-de-um-banco-de-dados-relacional-para-uma-tabela-do-hive)
    * Insira ou atualize dados do HDFS para um tabela de uma banco de dados relacional
    * Iniciar um agente do Flume a partir de um arquivo de configuração
+   * Configure um `channel` de memória com um tamanho específico
 2. [Data Transformation](#data-transformation)
 3. [Data Analysis](#data-analysis)
 
@@ -183,9 +184,41 @@ HDP.
 [horton_flume_guia]: https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.1/bk_command-line-installation/content/ch_installing_flume_chapter.html
 
 
-#### Given a configured sink and source, configure a Flume memory channel with a specified capacity
+#### Configure um `channel` de memória com um tamanho específico
 
-  [MEMORY CHANNEL](https://flume.apache.org/FlumeUserGuide.html#memory-channel)
+Um `channel` é um repositório onde os eventos capturados pelo `course` são
+armazenados até que o `sink` os removam. Um `channel` de removam é o tipo mais
+básico de `channel` e, abaixo, mostramos uma configuração típica, considerando
+que um `source` e um `sink` já foram configurados.
+
+```
+a1.channels = c1
+a1.channels.c1.type = memory
+a1.channels.c1.capacity = 10000
+a1.channels.c1.transactionCapacity = 10000
+a1.channels.c1.byteCapacity = 800000
+a1.channels.c1.byteCapacityBufferPercentage = 20
+```
+
+Vamos ver esta configuração linha a linha:
+1. Um `channel` de nome `a1` é definido para o agente `a1`.
+2. O tipo é definido, `memory`.
+3. Definimos a capacidade do `channel` que, neste exemplo, é de 10000 eventos.
+4. Nesta linha, definimos a capacidade máxima de eventos que o `channel` vai
+   passar do `source` para o `sink`. Neste caso, são 10000 eventos por
+   transação.
+5. Quantidade total de memória, em bytes, que é a soma de todos os eventos
+   armazenados. Vale notar que, da forma que o `channel` de memória foi
+   implementado, o `byteCapacity` corresponde apenas aos dados do `body` do
+   evento.
+6. Nesta última linha, definimos a a quantidade de memória para o cabeçalho dos
+   eventos. O valor é a porcentagem do *buffer* entre o `byteCapacity` e a soma
+   estimada de todos os eventos que, neste caso, foi definida como 20%.
+
+O exemplo acima foi retirado da [documentação][MEMORY CHANNEL] que também
+exemplifica os outros tipos de `channels`.
+
+[MEMORY CHANNEL]: (https://flume.apache.org/FlumeUserGuide.html#memory-channel
 
 
 ### Data Transformation
