@@ -18,7 +18,7 @@ em seu [site][site], e ainda está em fase de elaboração.
 2. Transformação de Dados
   * Escreva execute um script do Pig
   * Carregue dados para uma relação do Pig sem definir um esquema
-
+  * Carregue dados para uma relação do Pig definindo um esquema
 3. Análise de Dados
 
 ### Ingestão de Dados
@@ -286,9 +286,18 @@ A [documentação][pig_load] possui mais detalhes.
 [pig_load]: https://pig.apache.org/docs/r0.15.0/basic.html#load
 
 
-#### Load data into a Pig relation with a schema
+#### Carregue dados para uma relação do Pig definindo um esquema
 
-  [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#load)
+
+Agora, veremos como definir um esquema ao carregar uma tabela de dados no Pig.
+
+```
+A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
+```
+
+Nós carregamos a mesma tabela, só que desta vez nós definimos o nome de cada
+coluna e o tipo de dado que cada coluna armazena. Não é necessário definir o
+tipo da variável e, caso não façamos, será carregada como texto.
 
 
 #### Load data from a Hive table into a Pig relation
