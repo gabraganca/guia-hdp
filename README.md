@@ -15,8 +15,8 @@ em seu [site][site], e ainda está em fase de elaboração.
    * [Insira ou atualize dados do HDFS para um tabela de uma banco de dados relacional](#insira-ou-atualize-dados-do-hdfs-para-um-tabela-de-uma-banco-de-dados-relacional)
    * [Inicie um agente do Flume a partir de um arquivo de configuração](#inicie-um-agente-do-flume-a-partir-de-um-arquivo-de-configura%C3%A7%C3%A3o)
    * [Configure um `channel` de memória com um tamanho específico](#configure-um-channel-de-mem%C3%B3ria-com-um-tamanho-espec%C3%ADfico)
-2. [Data Transformation](#data-transformation)
-3. [Data Analysis](#data-analysis)
+2. Transformação de Dados
+3. Análise de Dados
 
 ### Ingestão de Dados
 
@@ -219,7 +219,7 @@ exemplifica os outros tipos de `channels`.
 [MEMORY CHANNEL]: (https://flume.apache.org/FlumeUserGuide.html#memory-channel
 
 
-### Data Transformation
+### Transformação de Dados
 
 #### Write and execute a Pig script
 
@@ -316,7 +316,7 @@ exemplifica os outros tipos de `channels`.
   [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#register)
 
 
-### Data Analysis
+### Análise de Dados
 
 #### Write and execute a Hive query
 
