@@ -1,9 +1,7 @@
 # Guia para Certificação HDPCD da Hortonworks
 
-[![Em andamento](https://img.shields.io/badge/Em%20andamento-20%25-red.svg)](https://github.com/gabraganca/guia-hdp)
-
 O material abaixo foi inspirado na guia de objetivos fornecido pela Hortonworks
-em seu [site][site].
+em seu [site][site], e ainda está em fase de elaboração.
 
 
 [site]: https://br.hortonworks.com/services/training/certification/exam-objectives/#hdpcd
