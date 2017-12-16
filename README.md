@@ -15,6 +15,7 @@ em seu [site][site].
    * [Importe os resultados de uma *query* a um banco de dados para o HDFS](#importe-os-resultados-de-uma-query-a-um-banco-de-dados-para-o-hdfs)
    * [Importe uma tabela de um banco de dados relacional para uma tabela do Hive](#importe-uma-tabela-de-um-banco-de-dados-relacional-para-uma-tabela-do-hive)
    * Insira ou atualize dados do HDFS para um tabela de uma banco de dados relacional
+   * Iniciar um agente do Flume a partir de um arquivo de configuração
 2. [Data Transformation](#data-transformation)
 3. [Data Analysis](#data-analysis)
 
@@ -157,9 +158,29 @@ O comando `export` aceita outros argumentos e recomendo a
 [SQOOP-EXPORT]: http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_literal_sqoop_export_literal
 
 
-#### Given a Flume configuration file, start a Flume agent
+#### Iniciar um agente do Flume a partir de um arquivo de configuração
 
-  [FLUME AGENT](https://flume.apache.org/FlumeUserGuide.html#starting-an-agent)
+Nós iniciamos um agente do Flume através do terminal. Para isso
+
+```
+$ flume-ng agent --name nome_do_agente --conf /etc/flume/conf --conf-file flume.conf
+```
+
+O comando `agent` inicia o agente coletor do Flume. Vamos ver agora os
+argumentos passados para o Flume:
+
+* `--name` (`-n`): nome do agente (obrigatório):
+* `--conf` (`-c`): aponta o diretório onde Flume encontrará seus principais
+  configurações.
+* `conf-file` (`-f`): caminho para o arquivo de configuração do Flume onde o
+  agente está definido.
+
+Para maiores detalhes, recomendo a [documentação oficial][FLUME AGENT] e [este
+guia][horton_flume_guia] da Hortonworks que mostra como começar o agente no
+HDP.
+
+[FLUME AGENT]: (https://flume.apache.org/FlumeUserGuide.html#starting-an-agent
+[horton_flume_guia]: https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.1/bk_command-line-installation/content/ch_installing_flume_chapter.html
 
 
 #### Given a configured sink and source, configure a Flume memory channel with a specified capacity
