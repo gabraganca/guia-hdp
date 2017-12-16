@@ -17,6 +17,8 @@ em seu [site][site], e ainda está em fase de elaboração.
    * [Configure um `channel` de memória com um tamanho específico](#configure-um-channel-de-mem%C3%B3ria-com-um-tamanho-espec%C3%ADfico)
 2. Transformação de Dados
   * Escreva execute um script do Pig
+  * Carregue dados para uma relação do Pig sem definir um esquema
+
 3. Análise de Dados
 
 ### Ingestão de Dados
@@ -267,9 +269,21 @@ $ pig meu_script.pig
 [pig_run]: https://pig.apache.org/docs/r0.15.0/start.html#run
 
 
-#### Load data into a Pig relation without a schema
+#### Carregue dados para uma relação do Pig sem definir um esquema
 
-  [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#load)
+Nós utilizamos a declaração `LOAD` para carregar um conjunto de dados para uma
+relação do Pig. A forma mais básica de carregar um conjunto de dados é:
+
+```
+A = LOAD 'vendas';
+```
+
+Em que carregamos uma tabela chamada `vendas` usando o método padrão,
+`PigStorage`.
+
+A [documentação][pig_load] possui mais detalhes.
+
+[pig_load]: https://pig.apache.org/docs/r0.15.0/basic.html#load
 
 
 #### Load data into a Pig relation with a schema
