@@ -15,12 +15,12 @@ em seu [site][site], e ainda está em fase de elaboração.
    * [Insira ou atualize dados do HDFS para um tabela de uma banco de dados relacional](#insira-ou-atualize-dados-do-hdfs-para-um-tabela-de-uma-banco-de-dados-relacional)
    * [Inicie um agente do Flume a partir de um arquivo de configuração](#inicie-um-agente-do-flume-a-partir-de-um-arquivo-de-configura%C3%A7%C3%A3o)
    * [Configure um `channel` de memória com um tamanho específico](#configure-um-channel-de-mem%C3%B3ria-com-um-tamanho-espec%C3%ADfico)
-2. Transformação de Dados
-  * Escreva execute um script do Pig
-  * Carregue dados para uma relação do Pig sem definir um esquema
-  * Carregue dados para uma relação do Pig definindo um esquema
-  * Carregue dados de uma tabela do Hive para uma relação do Pig
-3. Análise de Dados
+2. [Transformação de Dados](#transforma%C3%A7%C3%A3o-de-dados)
+   * [Escreva execute um script do Pig](#escreva-a-execute-um-script-do-pig)
+   * [Carregue dados para uma relação do Pig sem definir um esquema](#carregue-dados-para-uma-rela%C3%A7%C3%A3o-do-pig-sem-definir-um-esquema)
+   * [Carregue dados para uma relação do Pig definindo um esquema](#carregue-dados-para-uma-rela%C3%A7%C3%A3o-do-pig-definindo-um-esquema)
+   * [Carregue dados de uma tabela do Hive para uma relação do Pig](#carregue-dados-de-uma-tabela-do-hive-para-uma-rela%C3%A7%C3%A3o-do-pig)
+3. [Análise de Dados](#an%C3%A1lise-de-dados)
 
 ### Ingestão de Dados
 
