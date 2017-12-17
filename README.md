@@ -19,6 +19,7 @@ em seu [site][site], e ainda está em fase de elaboração.
   * Escreva execute um script do Pig
   * Carregue dados para uma relação do Pig sem definir um esquema
   * Carregue dados para uma relação do Pig definindo um esquema
+  * Carregue dados de uma tabela do Hive para uma relação do Pig
 3. Análise de Dados
 
 ### Ingestão de Dados
@@ -300,9 +301,18 @@ coluna e o tipo de dado que cada coluna armazena. Não é necessário definir o
 tipo da variável e, caso não façamos, será carregada como texto.
 
 
-#### Load data from a Hive table into a Pig relation
+#### Carregue dados de uma tabela do Hive para uma relação do Pig
 
-  [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/HCatalog+LoadStore)
+O Pig nos permite obter dados de outras fontes como de uma tabela armazenada no
+Hive. Para isso, nós vamos precisar o argumento `USING` junto com o `LOAD`:
+
+```
+A = LOAD 'vendas' USING org.apache.hive.hcatalog.pig.HCatLoader();
+```
+
+Veja que utilizamos o `HCatLoader` ao invés do `PigStorage`. Para maiores detalhes, veja a [documentação][HCatalog].
+
+[HCatalog]: https://cwiki.apache.org/confluence/display/Hive/HCatalog+LoadStore
 
 
 #### Use Pig to transform data into a specified format
