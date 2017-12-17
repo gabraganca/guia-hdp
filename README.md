@@ -25,7 +25,7 @@ Este é um trabalho em elaboração. As seguintes etpadas precisam ser feitas:
    * [Carregue dados para uma relação do Pig sem definir um esquema](#carregue-dados-para-uma-rela%C3%A7%C3%A3o-do-pig-sem-definir-um-esquema)
    * [Carregue dados para uma relação do Pig definindo um esquema](#carregue-dados-para-uma-rela%C3%A7%C3%A3o-do-pig-definindo-um-esquema)
    * [Carregue dados de uma tabela do Hive para uma relação do Pig](#carregue-dados-de-uma-tabela-do-hive-para-uma-rela%C3%A7%C3%A3o-do-pig)
-   * Use Pig to transform data into a specified format
+   * Use o Pig para transformar dados para um formato específico
    * Transform data to match a given Hive schema
    * Group the data of one or more Pig relations
    * Use Pig to remove records with null values from a relation
@@ -363,9 +363,30 @@ Veja que utilizamos o `HCatLoader` ao invés do `PigStorage`. Para maiores detal
 [HCatalog]: https://cwiki.apache.org/confluence/display/Hive/HCatalog+LoadStore
 
 
-### Use Pig to transform data into a specified format
+### Use o Pig para transformar dados para um formato específico
 
-  [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#foreach)
+Após carregar os dados usando `LOAD`, nós vamos quere executar alguma operação
+neles e para isso podemos usar o comando `FOREACH` que executa um *loop* linha
+a linha. Por exemplo:
+
+```
+A = LOAD 'vendas';
+B = FOREACH A GENERATE $0;
+```
+
+Nós carregamos a tabela acima  na primeira linha e criamos uma relação `B` que
+contém apenas a informação da primeira coluna.
+
+Um exemplo mais interessante é calcular o valor da receita de cada venda:
+
+```
+A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
+B = FOREACH A GENERATE preco * qtde;
+```
+
+Veja a [documentação do `FOREACH`][foreach_docs] para maiores detalhes.
+
+[foreach_docs]: https://pig.apache.org/docs/r0.15.0/basic.html#foreach
 
 
 ### Transform data to match a given Hive schema
