@@ -27,7 +27,7 @@ Este é um trabalho em elaboração. As seguintes etpadas precisam ser feitas:
    * [Carregue dados de uma tabela do Hive para uma relação do Pig](#carregue-dados-de-uma-tabela-do-hive-para-uma-rela%C3%A7%C3%A3o-do-pig)
    * Use o Pig para transformar dados para um formato específico
    * Transforme os dados para um esquema pŕe-definido do Hive
-   * Group the data of one or more Pig relations
+   * Agrupe os dados em uma ou mais relações do Pig
    * Use Pig to remove records with null values from a relation
    * Store the data from a Pig relation into a folder in HDFS
    * Store the data from a Pig relation into a Hive table
@@ -411,9 +411,34 @@ B = FOREACH A GENERATE qtde, preco, item;
 
 Em que o esquema do Hive teria o esquema `qtde`, `preco` e `item`.
 
-### Group the data of one or more Pig relations
+### Agrupe os dados em uma ou mais relações do Pig
 
-  [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#group)
+Em processos de análise de dados, o argupamento de dados é uma operação básica,
+essencial e corriqueira. No Pig, nós utilizamos o `GROUP BY`:
+
+```
+A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
+B = GROUP A BY item;
+```
+
+Também é possível agrupar por mais de um campo:
+
+```
+A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
+B = GROUP A BY (item, preco);
+```
+
+Caso tenhamos duas relações, podemos fazer um `COGROUP`:
+
+```
+A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
+B = LOAD 'estoque' AS (item_nome:chararray, qtde_estoque:int);
+C = COGROUP A BY item, B BY item_nome;
+```
+
+A [documentação][pig_group] possui mais detalhes e exemplos.
+
+[pig_group]: https://pig.apache.org/docs/r0.15.0/basic.html#group
 
 
 ### Use Pig to remove records with null values from a relation
