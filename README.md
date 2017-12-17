@@ -330,6 +330,15 @@ A = LOAD 'vendas';
 Em que carregamos uma tabela chamada `vendas` usando o método padrão,
 `PigStorage`.
 
+É importante saber que o Pig considera tabulação como delimitador padrão. Para
+definir um delimitador explictamente precisamos usar `USING
+PigStorage('delimitador')`. Por exemplo, para carregar um arquivo CSV, nós
+temos que fazer o seguinte:
+
+```
+A = LOAD 'vendas' USING PigStorage(',');
+```
+
 A [documentação][pig_load] possui mais detalhes.
 
 [pig_load]: https://pig.apache.org/docs/r0.15.0/basic.html#load
