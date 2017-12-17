@@ -26,7 +26,7 @@ Este é um trabalho em elaboração. As seguintes etpadas precisam ser feitas:
    * [Carregue dados para uma relação do Pig definindo um esquema](#carregue-dados-para-uma-rela%C3%A7%C3%A3o-do-pig-definindo-um-esquema)
    * [Carregue dados de uma tabela do Hive para uma relação do Pig](#carregue-dados-de-uma-tabela-do-hive-para-uma-rela%C3%A7%C3%A3o-do-pig)
    * Use o Pig para transformar dados para um formato específico
-   * Transform data to match a given Hive schema
+   * Transforme os dados para um esquema pŕe-definido do Hive
    * Group the data of one or more Pig relations
    * Use Pig to remove records with null values from a relation
    * Store the data from a Pig relation into a folder in HDFS
@@ -398,10 +398,18 @@ Veja a [documentação do `FOREACH`][foreach_docs] para maiores detalhes.
 [foreach_docs]: https://pig.apache.org/docs/r0.15.0/basic.html#foreach
 
 
-### Transform data to match a given Hive schema
+### Transforme os dados para um esquema pŕe-definido do Hive
 
-  [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#foreach)
+Neste tópico, o objetivo é transformar uma tabela carregada com o Pig para um
+esquema já pré-definido do Hive. Para isso, basta usarmos o `FOREACH` para
+colocar as colunas da tabela na mesma ordem da tabela do Hive. Por exemplo:
 
+```
+A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
+B = FOREACH A GENERATE qtde, preco, item;
+```
+
+Em que o esquema do Hive teria o esquema `qtde`, `preco` e `item`.
 
 ### Group the data of one or more Pig relations
 
