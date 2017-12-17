@@ -28,7 +28,7 @@ Este é um trabalho em elaboração. As seguintes etpadas precisam ser feitas:
    * Use o Pig para transformar dados para um formato específico
    * Transforme os dados para um esquema pŕe-definido do Hive
    * Agrupe os dados em uma ou mais relações do Pig
-   * Use Pig to remove records with null values from a relation
+   * Use o Pig para remover valores ausentes em uma relação
    * Store the data from a Pig relation into a folder in HDFS
    * Store the data from a Pig relation into a Hive table
    * Sort the output of a Pig relation
@@ -441,9 +441,20 @@ A [documentação][pig_group] possui mais detalhes e exemplos.
 [pig_group]: https://pig.apache.org/docs/r0.15.0/basic.html#group
 
 
-### Use Pig to remove records with null values from a relation
+### Use o Pig para remover valores ausentes em uma relação
 
-  [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#filter)
+É comum termos valores ausentes em nosso dados e, em muita das vezes,
+precisamos excluir estas entradas. Para fazer isto com o Pig, nós usamos o
+comando `FILTER`:
+
+```
+A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
+B = FILTER A BY item != '';
+```
+
+A [documentação do `FILTER`][pig_filter] possui mais detalhes.
+
+[pig_filter]: https://pig.apache.org/docs/r0.15.0/basic.html#filter
 
 
 ### Store the data from a Pig relation into a folder in HDFS
