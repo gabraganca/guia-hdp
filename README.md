@@ -29,7 +29,7 @@ Este é um trabalho em elaboração. As seguintes etpadas precisam ser feitas:
    * Transforme os dados para um esquema pŕe-definido do Hive
    * Agrupe os dados em uma ou mais relações do Pig
    * Use o Pig para remover valores ausentes em uma relação
-   * Store the data from a Pig relation into a folder in HDFS
+   * Armazene os dados de uma relação no Pig em uma pasta no HDFS
    * Store the data from a Pig relation into a Hive table
    * Sort the output of a Pig relation
    * Remove the duplicate tuples of a Pig relation
@@ -457,9 +457,38 @@ A [documentação do `FILTER`][pig_filter] possui mais detalhes.
 [pig_filter]: https://pig.apache.org/docs/r0.15.0/basic.html#filter
 
 
-### Store the data from a Pig relation into a folder in HDFS
+### Armazene os dados de uma relação no Pig em uma pasta no HDFS
 
-  [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#store)
+Após realizarmos nossas operações nos dados, é bem provável que iremos querer
+salvar o conjunto de dados trasnformado para futuras consultas. Para isso, nós
+utilizamos o método `STORE`. No exemplo abaixo, exemplifico como armazenar uma
+relação `A`:
+
+```
+STORE A INTO 'meus_dados' USING PigStorage(',');
+```
+
+Estamos salvando uma relação `A` em uma pasta chamada `meus_dados`. Esta pasta
+contém arquivos típicos de uma saída de um processo *MapReduce*: um arquivo
+chamado `_SUCCESS` apontando o sucesso da operação, e um ou mais arquivos com
+os dados.
+
+Aqui, nós estamos forçando que os elementos de cada linha sejam separadas por
+vírgula (`USING PigStorage(',')`). Se nós não usarmos este argumento, o Pig
+salvará usando tabulação que é seu delimitador padrão.
+
+No nosso exemplo acima, é possível que o Pig salve os dados na máquina local;
+vai depender de como o pig foi iniciado (e.g., `pig -x local`). para nos
+certificarmos que a relação `A` será salva no HDFS, nós temos que passar o
+endereço correto do HDFS.
+
+```
+STORE A INTO 'hdfs://sandbox-hdp.hortonworks.com:8020/user/root/meus_dados';
+```
+
+[A documentação do `STORE`][pig_store] possui mais exemplos.
+
+[pig_store]: https://pig.apache.org/docs/r0.15.0/basic.html#store
 
 
 ### Store the data from a Pig relation into a Hive table
