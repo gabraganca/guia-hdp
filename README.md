@@ -1,12 +1,17 @@
 # Guia para Certificação HDPCD da Hortonworks
 
 O material abaixo foi inspirado na guia de objetivos fornecido pela Hortonworks
-em seu [site][site], e ainda está em fase de elaboração.
+em seu [site][site].
+
+Este é um trabalho em elaboração. As seguintes etpadas precisam ser feitas:
+
+* Os itens em inglês precisam ser descritos.
+* Revisão completa do texto.
 
 
 [site]: https://br.hortonworks.com/services/training/certification/exam-objectives/#hdpcd
 
-## Objetivos
+## Sumário
 
 1. [Ingestão de Dados](#ingestão-de-dados)
    * [Importação de tabela de um RDBMS para o HDFS usando o Sqoop](#importe-dados-de-uma-tabela-em-uma-base-de-dados-relacional-para-o-hdfs)
@@ -20,11 +25,54 @@ em seu [site][site], e ainda está em fase de elaboração.
    * [Carregue dados para uma relação do Pig sem definir um esquema](#carregue-dados-para-uma-rela%C3%A7%C3%A3o-do-pig-sem-definir-um-esquema)
    * [Carregue dados para uma relação do Pig definindo um esquema](#carregue-dados-para-uma-rela%C3%A7%C3%A3o-do-pig-definindo-um-esquema)
    * [Carregue dados de uma tabela do Hive para uma relação do Pig](#carregue-dados-de-uma-tabela-do-hive-para-uma-rela%C3%A7%C3%A3o-do-pig)
+   * Use Pig to transform data into a specified format
+   * Transform data to match a given Hive schema
+   * Group the data of one or more Pig relations
+   * Use Pig to remove records with null values from a relation
+   * Store the data from a Pig relation into a folder in HDFS
+   * Store the data from a Pig relation into a Hive table
+   * Sort the output of a Pig relation
+   * Remove the duplicate tuples of a Pig relation
+   * Specify the number of reduce tasks for a Pig MapReduce job
+   * Join two datasets using Pig
+   * Perform a replicated join using Pig
+   * Run a Pig job using Tez
+   * Within a Pig script, register a JAR file of User Defined Functions
+   * Within a Pig script, define an alias for a User Defined Function
+   * Within a Pig script, invoke a User Defined Function
 3. [Análise de Dados](#an%C3%A1lise-de-dados)
+   * Write and execute a Hive query
+   * Define a Hive-managed table
+   * Define a Hive external table
+   * Define a partitioned Hive table
+   * Define a bucketed Hive table
+   * Define a Hive table from a select query
+   * Define a Hive table that uses the ORCFile format
+   * Create a new ORCFile table from the data in an existing non-ORCFile Hive table
+   * Specify the storage format of a Hive table
+   * Specify the delimiter of a Hive table
+   * Load data into a Hive table from a local directory
+   * Load data into a Hive table from an HDFS directory
+   * Load data into a Hive table as the result of a query
+   * Load a compressed data file into a Hive table
+   * Update a row in a Hive table
+   * Delete a row from a Hive table
+   * Insert a new row into a Hive table
+   * Join two Hive tables
+   * Run a Hive query using Tez
+   * Run a Hive query using vectorization
+   * Output the execution plan for a Hive query
+   * Use a subquery within a Hive query
+   * Output data from a Hive query that is totally ordered across multiple reducers
+   * Set a Hadoop or Hive configuration property from within a Hive query
+   * Output the execution plan for a Hive query
+   * Use a subquery within a Hive query
+   * Output data from a Hive query that is totally ordered across multiple reducers
+   * Set a Hadoop or Hive configuration property from within a Hive query
 
-### Ingestão de Dados
+## Ingestão de Dados
 
-#### Importe dados de uma tabela em uma base de dados relacional para o HDFS
+### Importe dados de uma tabela em uma base de dados relacional para o HDFS
 
 Para isso, nós devemos usar o [`sqoop import`][SQOOP-IMPORT] e sempre devemos
 usar o argumento `--connect` que vai permitir que o `sqoop` se conecte ao banco
@@ -75,7 +123,7 @@ Para maiores informações, recomendo a leitura da [documentação][SQOOP-IMPORT
 
 [SQOOP-IMPORT]: http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_literal_sqoop_import_literal
 
-#### Importe os resultados de uma *query* a um banco de dados para o HDFS
+### Importe os resultados de uma *query* a um banco de dados para o HDFS
 
 Podemos realizar uma *query* em um banco de dados relacional e importar o
 resultado direto para o HDFS. Para isso, nós precisaremos usar dois argumentos:
@@ -101,7 +149,7 @@ casos especiais.
 [FREE-FORM QUERY IMPORTS]: http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_free_form_query_imports
 
 
-#### Importe uma tabela de um banco de dados relacional para uma tabela do Hive
+### Importe uma tabela de um banco de dados relacional para uma tabela do Hive
 
 Para importar uma tabela direto para o Hive, nós podemos usar os seguintes
 argumentos:
@@ -133,7 +181,7 @@ Para maiores detalhes, recomendo a [documentação][IMPORTING DATA INTO HIVE] e
 [sqoop-hive]: https://dzone.com/articles/sqoop-import-data-from-mysql-to-hive
 
 
-#### Insira ou atualize dados do HDFS para um tabela de uma banco de dados relacional
+### Insira ou atualize dados do HDFS para um tabela de uma banco de dados relacional
 
 Além de inserir tabelas de um banco de dados relaciona para o HDFS, o `sqoop`
 também nos permite fazer o processo contrário. vamos ver agora como exportar
@@ -161,7 +209,7 @@ O comando `export` aceita outros argumentos e recomendo a
 [SQOOP-EXPORT]: http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_literal_sqoop_export_literal
 
 
-#### Inicie um agente do Flume a partir de um arquivo de configuração
+### Inicie um agente do Flume a partir de um arquivo de configuração
 
 Nós iniciamos um agente do Flume através do terminal. Para isso
 
@@ -186,7 +234,7 @@ HDP.
 [horton_flume_guia]: https://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.1/bk_command-line-installation/content/ch_installing_flume_chapter.html
 
 
-#### Configure um `channel` de memória com um tamanho específico
+### Configure um `channel` de memória com um tamanho específico
 
 Um `channel` é um repositório onde os eventos capturados pelo `course` são
 armazenados até que o `sink` os removam. Um `channel` de removam é o tipo mais
@@ -223,9 +271,9 @@ exemplifica os outros tipos de `channels`.
 [MEMORY CHANNEL]: (https://flume.apache.org/FlumeUserGuide.html#memory-channel
 
 
-### Transformação de Dados
+## Transformação de Dados
 
-#### Escreva a execute um script do Pig
+### Escreva a execute um script do Pig
 
 O Pig é uma ferramenta de alto nível para processamento de dados. Ele nos
 permite processar dados de forma mais prática do que se fôssemos usar
@@ -270,7 +318,7 @@ $ pig meu_script.pig
 [pig_run]: https://pig.apache.org/docs/r0.15.0/start.html#run
 
 
-#### Carregue dados para uma relação do Pig sem definir um esquema
+### Carregue dados para uma relação do Pig sem definir um esquema
 
 Nós utilizamos a declaração `LOAD` para carregar um conjunto de dados para uma
 relação do Pig. A forma mais básica de carregar um conjunto de dados é:
@@ -287,7 +335,7 @@ A [documentação][pig_load] possui mais detalhes.
 [pig_load]: https://pig.apache.org/docs/r0.15.0/basic.html#load
 
 
-#### Carregue dados para uma relação do Pig definindo um esquema
+### Carregue dados para uma relação do Pig definindo um esquema
 
 
 Agora, veremos como definir um esquema ao carregar uma tabela de dados no Pig.
@@ -301,7 +349,7 @@ coluna e o tipo de dado que cada coluna armazena. Não é necessário definir o
 tipo da variável e, caso não façamos, será carregada como texto.
 
 
-#### Carregue dados de uma tabela do Hive para uma relação do Pig
+### Carregue dados de uma tabela do Hive para uma relação do Pig
 
 O Pig nos permite obter dados de outras fontes como de uma tabela armazenada no
 Hive. Para isso, nós vamos precisar o argumento `USING` junto com o `LOAD`:
@@ -315,218 +363,218 @@ Veja que utilizamos o `HCatLoader` ao invés do `PigStorage`. Para maiores detal
 [HCatalog]: https://cwiki.apache.org/confluence/display/Hive/HCatalog+LoadStore
 
 
-#### Use Pig to transform data into a specified format
+### Use Pig to transform data into a specified format
 
   [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#foreach)
 
 
-#### Transform data to match a given Hive schema
+### Transform data to match a given Hive schema
 
   [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#foreach)
 
 
-#### Group the data of one or more Pig relations
+### Group the data of one or more Pig relations
 
   [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#group)
 
 
-#### Use Pig to remove records with null values from a relation
+### Use Pig to remove records with null values from a relation
 
   [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#filter)
 
 
-#### Store the data from a Pig relation into a folder in HDFS
+### Store the data from a Pig relation into a folder in HDFS
 
   [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#store)
 
 
-#### Store the data from a Pig relation into a Hive table
+### Store the data from a Pig relation into a Hive table
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/HCatalog+LoadStore)
 
 
-#### Sort the output of a Pig relation
+### Sort the output of a Pig relation
 
   [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#order-by)
 
 
-#### Remove the duplicate tuples of a Pig relation
+### Remove the duplicate tuples of a Pig relation
 
   [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#distinct)
 
 
-#### Specify the number of reduce tasks for a Pig MapReduce job
+### Specify the number of reduce tasks for a Pig MapReduce job
 
   [LEARN MORE](https://pig.apache.org/docs/r0.15.0/perf.html#parallel)
 
 
-#### Join two datasets using Pig
+### Join two datasets using Pig
 
   [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#join-outer)
 
 
-#### Perform a replicated join using Pig
+### Perform a replicated join using Pig
 
   [LEARN MORE](https://pig.apache.org/docs/r0.15.0/perf.html#replicated-joins)
 
 
-#### Run a Pig job using Tez
+### Run a Pig job using Tez
 
   [LEARN MORE](https://pig.apache.org/docs/r0.15.0/perf.html#tez-mode)
 
 
-#### Within a Pig script, register a JAR file of User Defined Functions
+### Within a Pig script, register a JAR file of User Defined Functions
 
   [LEARN MORE](https://pig.apache.org/docs/r0.15.0/udf.html#piggybank)
 
 
-#### Within a Pig script, define an alias for a User Defined Function
+### Within a Pig script, define an alias for a User Defined Function
 
   [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#define-udfs)
 
 
-#### Within a Pig script, invoke a User Defined Function
+### Within a Pig script, invoke a User Defined Function
 
   [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#register)
 
 
-### Análise de Dados
+## Análise de Dados
 
-#### Write and execute a Hive query
+### Write and execute a Hive query
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/Tutorial)
 
 
-#### Define a Hive-managed table
+### Define a Hive-managed table
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-Create/Drop/TruncateTable)
 
 
-#### Define a Hive external table
+### Define a Hive external table
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-ExternalTables)
 
 
-#### Define a partitioned Hive table
+### Define a partitioned Hive table
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-PartitionedTables)
 
 
-#### Define a bucketed Hive table
+### Define a bucketed Hive table
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-BucketedSortedTables)
 
 
-#### Define a Hive table from a select query
+### Define a Hive table from a select query
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-CreateTableAsSelect(CTAS))
 
 
-#### Define a Hive table that uses the ORCFile format
+### Define a Hive table that uses the ORCFile format
 
   [LEARN MORE](https://hortonworks.com/blog/orcfile-in-hdp-2-better-compression-better-performance/)
 
 
-#### Create a new ORCFile table from the data in an existing non-ORCFile Hive table
+### Create a new ORCFile table from the data in an existing non-ORCFile Hive table
 
   [LEARN MORE](https://hortonworks.com/blog/orcfile-in-hdp-2-better-compression-better-performance/)
 
 
-#### Specify the storage format of a Hive table
+### Specify the storage format of a Hive table
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-RowFormat,StorageFormat,andSerDe)
 
 
-#### Specify the delimiter of a Hive table
+### Specify the delimiter of a Hive table
 
   [LEARN MORE](https://hortonworks.com/hadoop-tutorial/using-hive-data-analysis/)
 
 
-#### Load data into a Hive table from a local directory
+### Load data into a Hive table from a local directory
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DML#LanguageManualDML-Loadingfilesintotables)
 
 
-#### Load data into a Hive table from an HDFS directory
+### Load data into a Hive table from an HDFS directory
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DML#LanguageManualDML-Loadingfilesintotables)
 
 
-#### Load data into a Hive table as the result of a query
+### Load data into a Hive table as the result of a query
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DML#LanguageManualDML-InsertingdataintoHiveTablesfromqueries)
 
 
-#### Load a compressed data file into a Hive table
+### Load a compressed data file into a Hive table
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/CompressedStorage)
 
 
-#### Update a row in a Hive table
+### Update a row in a Hive table
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DML#LanguageManualDML-Update)
 
 
-#### Delete a row from a Hive table
+### Delete a row from a Hive table
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DML#LanguageManualDML-Delete)
 
 
-#### Insert a new row into a Hive table
+### Insert a new row into a Hive table
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DML#LanguageManualDML-InsertingvaluesintotablesfromSQL)
 
 
-#### Join two Hive tables
+### Join two Hive tables
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Joins)
 
 
-#### Run a Hive query using Tez
+### Run a Hive query using Tez
 
   [LEARN MORE](https://hortonworks.com/hadoop-tutorial/supercharging-interactive-queries-hive-tez/)
 
 
-#### Run a Hive query using vectorization
+### Run a Hive query using vectorization
 
   [LEARN MORE](https://hortonworks.com/hadoop-tutorial/supercharging-interactive-queries-hive-tez/)
 
 
-#### Output the execution plan for a Hive query
+### Output the execution plan for a Hive query
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Explain)
 
 
-#### Use a subquery within a Hive query
+### Use a subquery within a Hive query
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+SubQueries)
 
 
-#### Output data from a Hive query that is totally ordered across multiple reducers
+### Output data from a Hive query that is totally ordered across multiple reducers
 
   [LEARN MORE](https://issues.apache.org/jira/browse/HIVE-1402)
 
 
-#### Set a Hadoop or Hive configuration property from within a Hive query
+### Set a Hadoop or Hive configuration property from within a Hive query
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/AdminManual+Configuration#AdminManualConfiguration-ConfiguringHive)
 
 
-#### Output the execution plan for a Hive query
+### Output the execution plan for a Hive query
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Explain)
 
 
-#### Use a subquery within a Hive query
+### Use a subquery within a Hive query
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+SubQueries)
 
 
-#### Output data from a Hive query that is totally ordered across multiple reducers
+### Output data from a Hive query that is totally ordered across multiple reducers
 
   [LEARN MORE](https://issues.apache.org/jira/browse/HIVE-1402)
 
 
-#### Set a Hadoop or Hive configuration property from within a Hive query
+### Set a Hadoop or Hive configuration property from within a Hive query
 
   [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/AdminManual+Configuration#AdminManualConfiguration-ConfiguringHive)
