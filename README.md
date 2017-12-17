@@ -25,11 +25,11 @@ Este é um trabalho em elaboração. As seguintes etpadas precisam ser feitas:
    * [Carregue dados para uma relação do Pig sem definir um esquema](#carregue-dados-para-uma-rela%C3%A7%C3%A3o-do-pig-sem-definir-um-esquema)
    * [Carregue dados para uma relação do Pig definindo um esquema](#carregue-dados-para-uma-rela%C3%A7%C3%A3o-do-pig-definindo-um-esquema)
    * [Carregue dados de uma tabela do Hive para uma relação do Pig](#carregue-dados-de-uma-tabela-do-hive-para-uma-rela%C3%A7%C3%A3o-do-pig)
-   * Use o Pig para transformar dados para um formato específico
-   * Transforme os dados para um esquema pŕe-definido do Hive
-   * Agrupe os dados em uma ou mais relações do Pig
-   * Use o Pig para remover valores ausentes em uma relação
-   * Armazene os dados de uma relação no Pig em uma pasta no HDFS
+   * [Use o Pig para transformar dados para um formato específico](#use-o-pig-para-transformar-dados-para-um-formato-espec%C3%ADfico)
+   * [Transforme os dados para um esquema pŕe-definido do Hive](#transforme-os-dados-para-um-esquema-p%C5%95e-definido-do-hive)
+   * [Agrupe os dados em uma ou mais relações do Pig](#agrupe-os-dados-em-uma-ou-mais-rela%C3%A7%C3%B5es-do-pig)
+   * [Use o Pig para remover valores ausentes em uma relação](#use-o-pig-para-remover-valores-ausentes-em-uma-rela%C3%A7%C3%A3o)
+   * [Armazene os dados de uma relação no Pig em uma pasta no HDFS](#armazene-os-dados-de-uma-rela%C3%A7%C3%A3o-no-pig-em-uma-pasta-no-hdfs)
    * Store the data from a Pig relation into a Hive table
    * Sort the output of a Pig relation
    * Remove the duplicate tuples of a Pig relation
