@@ -30,7 +30,7 @@ Este é um trabalho em elaboração. As seguintes etpadas precisam ser feitas:
    * [Agrupe os dados em uma ou mais relações do Pig](#agrupe-os-dados-em-uma-ou-mais-rela%C3%A7%C3%B5es-do-pig)
    * [Use o Pig para remover valores ausentes em uma relação](#use-o-pig-para-remover-valores-ausentes-em-uma-rela%C3%A7%C3%A3o)
    * [Armazene os dados de uma relação no Pig em uma pasta no HDFS](#armazene-os-dados-de-uma-rela%C3%A7%C3%A3o-no-pig-em-uma-pasta-no-hdfs)
-   * Store the data from a Pig relation into a Hive table
+   * [Armazene os dados de uma relação no Pig em uma tabela do Hive]()
    * Sort the output of a Pig relation
    * Remove the duplicate tuples of a Pig relation
    * Specify the number of reduce tasks for a Pig MapReduce job
@@ -491,9 +491,39 @@ STORE A INTO 'hdfs://sandbox-hdp.hortonworks.com:8020/user/root/meus_dados';
 [pig_store]: https://pig.apache.org/docs/r0.15.0/basic.html#store
 
 
-### Store the data from a Pig relation into a Hive table
+### Armazene os dados de uma relação no Pig em uma tabela do Hive
 
-  [LEARN MORE](https://cwiki.apache.org/confluence/display/Hive/HCatalog+LoadStore)
+Além de salvar o arquivo em um diretório do HDFS, nós também podemos salvar
+diretamente para um banco de dados do Hive. Para isso, nós precisaremos primeiro
+criar a tabela no Hive. Você pode fazer isso na interface gráfica do Ambari ou na
+interface do Hive no terminal:
+
+```
+hive> CREATE TABLE vendas (
+    > item string,
+    > preco float,
+    > qtde int
+    > );
+```
+
+Com isso, teremos uma tabela criada no Hive. Por padrão, o Hive criara no banco
+de dados `default`. Agora, para podermos exportar o dado para o Hive, nós
+precisaremos usar a *flag* `-useHCatalog`, tanto se estivermos rodando um
+script quanto para abrir o *grunt*:
+
+```
+$ pig  -useHCatalog
+...
+grunt> A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
+grunt> STORE A INTO 'nome_da_db.vendas' using org.apache.hive.hcatalog.pig.HCatStorer();
+```
+
+Outro requisito é que os dados tenham um esquema definido e que seja o mesmo da
+tabela criada no Hive.
+
+Para maioes detalhes, veja a [documentação][pig_hive].
+
+[pig_hive]: https://cwiki.apache.org/confluence/display/Hive/HCatalog+LoadStore
 
 
 ### Sort the output of a Pig relation
