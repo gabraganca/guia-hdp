@@ -3,7 +3,7 @@
 O material abaixo foi inspirado na guia de objetivos fornecido pela Hortonworks
 em seu [site][site].
 
-Este é um trabalho em elaboração. As seguintes etpadas precisam ser feitas:
+Este é um trabalho em elaboração. As seguintes etapas precisam ser feitas:
 
 * Os itens em inglês precisam ser descritos.
 * Revisão completa do texto.
