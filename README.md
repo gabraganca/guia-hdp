@@ -31,7 +31,7 @@ Este é um trabalho em elaboração. As seguintes etapas precisam ser feitas:
    * [Use o Pig para remover valores ausentes em uma relação](#use-o-pig-para-remover-valores-ausentes-em-uma-rela%C3%A7%C3%A3o)
    * [Armazene os dados de uma relação no Pig em uma pasta no HDFS](#armazene-os-dados-de-uma-rela%C3%A7%C3%A3o-no-pig-em-uma-pasta-no-hdfs)
    * [Armazene os dados de uma relação no Pig em uma tabela do Hive](#armazene-os-dados-de-uma-rela%C3%A7%C3%A3o-no-pig-em-uma-tabela-do-hive)
-   * Sort the output of a Pig relation
+   * Ordene a saída de uma relação do Pig
    * Remove the duplicate tuples of a Pig relation
    * Specify the number of reduce tasks for a Pig MapReduce job
    * Join two datasets using Pig
@@ -527,9 +527,22 @@ Para maioes detalhes, veja a [documentação][pig_hive].
 [pig_hive]: https://cwiki.apache.org/confluence/display/Hive/HCatalog+LoadStore
 
 
-### Sort the output of a Pig relation
+### Ordene a saída de uma relação do Pig
 
-  [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#order-by)
+Para ordernar uma tabela nós usmaos o `ORDER BY`:
+
+```
+A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
+B = ORDER A BY preco;
+C = ORDER A BY qtde DESC;
+```
+Por padrão, o Pig ordena de forma crescente, que é eemplificado na segunda
+linha do código acima (relação `B`). Para ordernar de forma descendente, nós
+usamos o argumento `DESC`, exemplificado na terciera linha na relação `C`).
+
+A [documentação][pig_orderby] traz mais exemplos.
+
+[pig_orderby]: https://pig.apache.org/docs/r0.15.0/basic.html#order-by
 
 
 ### Remove the duplicate tuples of a Pig relation
