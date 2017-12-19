@@ -32,7 +32,7 @@ Este é um trabalho em elaboração. As seguintes etapas precisam ser feitas:
    * [Armazene os dados de uma relação no Pig em uma pasta no HDFS](#armazene-os-dados-de-uma-rela%C3%A7%C3%A3o-no-pig-em-uma-pasta-no-hdfs)
    * [Armazene os dados de uma relação no Pig em uma tabela do Hive](#armazene-os-dados-de-uma-rela%C3%A7%C3%A3o-no-pig-em-uma-tabela-do-hive)
    * Ordene a saída de uma relação do Pig
-   * Remove the duplicate tuples of a Pig relation
+   * Remove as tuplas duplicadas de uma relação do Pig
    * Specify the number of reduce tasks for a Pig MapReduce job
    * Join two datasets using Pig
    * Perform a replicated join using Pig
@@ -545,9 +545,23 @@ A [documentação][pig_orderby] traz mais exemplos.
 [pig_orderby]: https://pig.apache.org/docs/r0.15.0/basic.html#order-by
 
 
-### Remove the duplicate tuples of a Pig relation
+### Remove as tuplas duplicadas de uma relação do Pig
 
-  [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#distinct)
+Um outro processo de manuseio de dados muito importante é a remoção de
+duplicatas, e para isso, nós utilizamos o `DISTINCT`.
+
+```
+B = DISTINCT A
+```
+
+Este comando vai retornar apenas as tuplas distintas. Vale notar aqui que cada
+linha da tabela vai ser tratada como se fosse uma tupla, assim o `DISTINCT só
+verifica por linhas distintas. Em caso de duplictas, o Pig retorna apenas uma
+tupla e descarta as outras.
+
+Veja a [documentação][pig_distinct] para maiores detalhes.
+
+[pig_distinct]: https://pig.apache.org/docs/r0.15.0/basic.html#distinct
 
 
 ### Specify the number of reduce tasks for a Pig MapReduce job
