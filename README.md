@@ -32,7 +32,7 @@ Este é um trabalho em elaboração. As seguintes etapas precisam ser feitas:
    * [Armazene os dados de uma relação no Pig em uma pasta no HDFS](#armazene-os-dados-de-uma-rela%C3%A7%C3%A3o-no-pig-em-uma-pasta-no-hdfs)
    * [Armazene os dados de uma relação no Pig em uma tabela do Hive](#armazene-os-dados-de-uma-rela%C3%A7%C3%A3o-no-pig-em-uma-tabela-do-hive)
    * [Ordene a saída de uma relação do Pig](#ordene-a-sa%C3%ADda-de-uma-rela%C3%A7%C3%A3o-do-pig)
-   * [Remove as tuplas duplicadas de uma relação do Pig](#remove-as-tuplas-duplicadas-de-uma-rela%C3%A7%C3%A3o-do-pig
+   * [Remove as tuplas duplicadas de uma relação do Pig](#remove-as-tuplas-duplicadas-de-uma-rela%C3%A7%C3%A3o-do-pig)
    * [Especifique o número de *reducers* a serem usados no Pig](#especifique-o-n%C3%BAmero-de-reducers-a-serem-usados-no-pig)
    * [Junte dois datasets usando o Pig](#junte-dois-datasets-usando-o-pig)
    * Perform a replicated join using Pig
