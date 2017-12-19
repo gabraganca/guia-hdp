@@ -34,7 +34,7 @@ Este é um trabalho em elaboração. As seguintes etapas precisam ser feitas:
    * Ordene a saída de uma relação do Pig
    * Remove as tuplas duplicadas de uma relação do Pig
    * Especifique o número de *reducers* a serem usados no Pig
-   * Join two datasets using Pig
+   * Junte dois datasets usando o Pig
    * Perform a replicated join using Pig
    * Run a Pig job using Tez
    * Within a Pig script, register a JAR file of User Defined Functions
@@ -593,9 +593,21 @@ por você. Para maiores detalhes, recomendo a [documentação][pig_parallel].
 [pig_parallel]: https://pig.apache.org/docs/r0.15.0/perf.html#parallel
 
 
-### Join two datasets using Pig
+### Junte dois datasets usando o Pig
 
-  [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#join-outer)
+Outro processo bem comum é juntar dois conjuntos de dados. Por padrão, o Pig
+faz um *outer join* e o usuário pode definir o tipo: `LEFT`, `RIGHT` ou `FULL`.
+Vamos ver um exemploi de um *left outer join*:
+
+```
+A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
+B = LOAD 'estoque' AS (item_nome:chararray, qtde_estoque:int);
+C = JOIN A BY item LEFT OUTER, B BY item_nome;
+```
+
+Para mais exemplos e detalhes, sugiro ler a [documentação](pig_join):
+
+[pig_join]: https://pig.apache.org/docs/r0.15.0/basic.html#join-outer
 
 
 ### Perform a replicated join using Pig
