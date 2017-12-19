@@ -3,7 +3,7 @@
 O material abaixo foi inspirado na guia de objetivos fornecido pela Hortonworks
 em seu [site][site].
 
-Este é um trabalho em elaboração. As seguintes etpadas precisam ser feitas:
+Este é um trabalho em elaboração. As seguintes etapas precisam ser feitas:
 
 * Os itens em inglês precisam ser descritos.
 * Revisão completa do texto.
@@ -30,7 +30,7 @@ Este é um trabalho em elaboração. As seguintes etpadas precisam ser feitas:
    * [Agrupe os dados em uma ou mais relações do Pig](#agrupe-os-dados-em-uma-ou-mais-rela%C3%A7%C3%B5es-do-pig)
    * [Use o Pig para remover valores ausentes em uma relação](#use-o-pig-para-remover-valores-ausentes-em-uma-rela%C3%A7%C3%A3o)
    * [Armazene os dados de uma relação no Pig em uma pasta no HDFS](#armazene-os-dados-de-uma-rela%C3%A7%C3%A3o-no-pig-em-uma-pasta-no-hdfs)
-   * [Armazene os dados de uma relação no Pig em uma tabela do Hive]()
+   * [Armazene os dados de uma relação no Pig em uma tabela do Hive](#armazene-os-dados-de-uma-rela%C3%A7%C3%A3o-no-pig-em-uma-tabela-do-hive)
    * Sort the output of a Pig relation
    * Remove the duplicate tuples of a Pig relation
    * Specify the number of reduce tasks for a Pig MapReduce job
