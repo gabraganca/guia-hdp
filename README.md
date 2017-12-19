@@ -21,7 +21,7 @@ Este é um trabalho em elaboração. As seguintes etapas precisam ser feitas:
    * [Inicie um agente do Flume a partir de um arquivo de configuração](#inicie-um-agente-do-flume-a-partir-de-um-arquivo-de-configura%C3%A7%C3%A3o)
    * [Configure um `channel` de memória com um tamanho específico](#configure-um-channel-de-mem%C3%B3ria-com-um-tamanho-espec%C3%ADfico)
 2. [Transformação de Dados](#transforma%C3%A7%C3%A3o-de-dados)
-   * [Escreva execute um script do Pig](#escreva-a-execute-um-script-do-pig)
+   * [Escreva execute um *script* do Pig](#escreva-a-execute-um-script-do-pig)
    * [Carregue dados para uma relação do Pig sem definir um esquema](#carregue-dados-para-uma-rela%C3%A7%C3%A3o-do-pig-sem-definir-um-esquema)
    * [Carregue dados para uma relação do Pig definindo um esquema](#carregue-dados-para-uma-rela%C3%A7%C3%A3o-do-pig-definindo-um-esquema)
    * [Carregue dados de uma tabela do Hive para uma relação do Pig](#carregue-dados-de-uma-tabela-do-hive-para-uma-rela%C3%A7%C3%A3o-do-pig)
@@ -184,11 +184,12 @@ Para maiores detalhes, recomendo a [documentação][IMPORTING DATA INTO HIVE] e
 ### Insira ou atualize dados do HDFS para um tabela de uma banco de dados relacional
 
 Além de inserir tabelas de um banco de dados relaciona para o HDFS, o `sqoop`
-também nos permite fazer o processo contrário. vamos ver agora como exportar
+também nos permite fazer o processo contrário. Vamos ver agora como exportar
 uma tabela do HDFS para um banco de dados.
 
-Ao invés do `import` nós devemos suar o `export`, e alguns dos argumentos são os mesmos, tais quais
-`--connect <jdbc-uri>`, `--username` e `--password`. Vamos ver um exemplo:
+Ao invés do `import` nós devemos suar o `export`, e alguns dos argumentos são
+os mesmos, tais quais `--connect <jdbc-uri>`, `--username` e `--password`.
+Vamos ver um exemplo:
 
 ```
 $ sqoop export \
@@ -204,7 +205,7 @@ O comando acima vai exportar uma tabela localizada no diretório
 `ecommerce.db`.
 
 O comando `export` aceita outros argumentos e recomendo a
-[documentação][SQOOP-EXPORT] para uma melhor explicaçação.
+[documentação][SQOOP-EXPORT] para uma melhor explicação.
 
 [SQOOP-EXPORT]: http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_literal_sqoop_export_literal
 
@@ -273,19 +274,19 @@ exemplifica os outros tipos de `channels`.
 
 ## Transformação de Dados
 
-### Escreva a execute um script do Pig
+### Escreva a execute um  *script* do Pig
 
 O Pig é uma ferramenta de alto nível para processamento de dados. Ele nos
 permite processar dados de forma mais prática do que se fôssemos usar
 diretamente o *MapReduce*.
 
 Nós podemos processar dados através um um ambiente REPL
-(*Read-Eval-Print-Loop*) ichamado *Grunt* ou através de execução de scripts
+(*Read-Eval-Print-Loop*) chamado *Grunt* ou através de execução de *scripts*
 criados no nosso editor de preferência. Vamos ver aqui um exemplo simples de
-script e como executá-lo, mas saiba que é possível rodar o script linha a linha
+script e como executá-lo, mas saiba que é possível rodar o *script* linha a linha
 no ambiente REPL.
 
-Vamos ver um script simples obtido da [documentação][pig_run]:
+Vamos ver um *script* simples obtido da [documentação][pig_run]:
 
 ```
 /* meu_script.pig
