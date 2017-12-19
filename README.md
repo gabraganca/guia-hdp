@@ -33,7 +33,7 @@ Este é um trabalho em elaboração. As seguintes etapas precisam ser feitas:
    * [Armazene os dados de uma relação no Pig em uma tabela do Hive](#armazene-os-dados-de-uma-rela%C3%A7%C3%A3o-no-pig-em-uma-tabela-do-hive)
    * Ordene a saída de uma relação do Pig
    * Remove as tuplas duplicadas de uma relação do Pig
-   * Specify the number of reduce tasks for a Pig MapReduce job
+   * Especifique o número de *reducers* a serem usados no Pig
    * Join two datasets using Pig
    * Perform a replicated join using Pig
    * Run a Pig job using Tez
@@ -564,9 +564,33 @@ Veja a [documentação][pig_distinct] para maiores detalhes.
 [pig_distinct]: https://pig.apache.org/docs/r0.15.0/basic.html#distinct
 
 
-### Specify the number of reduce tasks for a Pig MapReduce job
+### Especifique o número de *reducers* a serem usados no Pig
 
-  [LEARN MORE](https://pig.apache.org/docs/r0.15.0/perf.html#parallel)
+O Pig nos permite definir manualmente o número de * reducers*  a serem usados
+em suas tarefas *MapReduce*. Veja que só podemos faer isto para os *reducers* ;
+a quantidade de paraleleismo para os *maps* é definido pela arquivo de entrada
+(um *map* para cada bloco no HDFS).
+
+No exemplor abaixo, mostro como executar 10 *reducers* num processo de
+agrupamento:
+
+```
+A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
+B = GROUP A BY item PARALLEL 10;
+```
+
+Podemos também definir globalmente a quantidade de reducers em nossos *scripts*:
+
+```
+SET default_parallel 10;
+A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
+B = GROUP A BY item ;
+```
+
+Caos o nível de paralelismo não tenha sido defiido manualmente, o Pig decidirá
+por você. Para maiores detalhes, recomendo a [documentação][pig_parallel].
+
+[pig_parallel]: https://pig.apache.org/docs/r0.15.0/perf.html#parallel
 
 
 ### Join two datasets using Pig
