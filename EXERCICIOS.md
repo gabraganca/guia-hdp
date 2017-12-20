@@ -30,7 +30,7 @@ no diretório `datasets`.
    `/user/horton/flightdelays` no HDFS
 
 <details>
-<summary>**Solução**</summary>
+<summary><b>Solução</b></summary>
 
 1. Para criar um diretório em um sistema de arquivos, nós usamos o comando
    `mkdir`. No HDFS, usamos este mesmo comando, mas como uma `flag` para o
