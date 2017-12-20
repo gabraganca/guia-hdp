@@ -8,8 +8,8 @@ na AWS da Hortonworks que foi criada para praticar para o exame. Para sua
 praticidade, este conjuntos de dados foram replicados neste diretório e estão
 no diretório `datasets`.
 
-* [Exercício 1](##exerc%C3%ADcio-1)
-* [Exercício 2](##exerc%C3%ADcio-2)
+* [Exercício 1](#exerc%C3%ADcio-1)
+* [Exercício 2](#exerc%C3%ADcio-2)
 * [TASK 3](#task-03)
 * [TASK 4](#task-04)
 * [TASK 5](#task-05)
