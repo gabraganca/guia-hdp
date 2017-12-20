@@ -17,7 +17,7 @@ Este é um trabalho em elaboração. As seguintes etapas precisam ser feitas:
    * [Importação de tabela de um RDBMS para o HDFS usando o Sqoop](#importe-dados-de-uma-tabela-em-uma-base-de-dados-relacional-para-o-hdfs)
    * [Importe os resultados de uma *query* a um banco de dados para o HDFS](#importe-os-resultados-de-uma-query-a-um-banco-de-dados-para-o-hdfs)
    * [Importe uma tabela de um banco de dados relacional para uma tabela do Hive](#importe-uma-tabela-de-um-banco-de-dados-relacional-para-uma-tabela-do-hive)
-   * [Insira ou atualize dados do HDFS para um tabela de uma banco de dados relacional](#insira-ou-atualize-dados-do-hdfs-para-um-tabela-de-uma-banco-de-dados-relacional)
+   * [Insira ou atualize dados do HDFS para um tabela de uma banco de dados relacional](#insira-ou-atualize-dados-do-hdfs-para-uma-tabela-de-um-banco-de-dados-relacional)
    * [Inicie um agente do Flume a partir de um arquivo de configuração](#inicie-um-agente-do-flume-a-partir-de-um-arquivo-de-configura%C3%A7%C3%A3o)
    * [Configure um `channel` de memória com um tamanho específico](#configure-um-channel-de-mem%C3%B3ria-com-um-tamanho-espec%C3%ADfico)
 2. [Transformação de Dados](#transforma%C3%A7%C3%A3o-de-dados)
