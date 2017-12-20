@@ -9,7 +9,7 @@ praticidade, este conjuntos de dados foram replicados neste diretório e estão
 no diretório `datasets`.
 
 * [Exercício 1](##exerc%C3%ADcio-1)
-* [TASK 2](#task-02)
+* [Exercício 2](##exerc%C3%ADcio-2)
 * [TASK 3](#task-03)
 * [TASK 4](#task-04)
 * [TASK 5](#task-05)
@@ -52,33 +52,31 @@ no diretório `datasets`.
 
 </details>
 
-## TASK 02
+## Exercício 2
 
-Cleanse Data using Pig
+**Limpe os dados usando o Pig**
 
-1. Notice the comma-separated values of the flightdelays files in HDFS contain
-   historical data for airline flight delays. The columns in the files match
-the following schema:
-2. Year, Month, DayofMonth, DayOfWeek, DepTime, CRSDepTime, ArrTime,
-   CRSArrTime,
-3. UniqueCarrier, FlightNum, TailNum, ActualElapsedTime, CRSElapsedTime,
-   AirTime,
-4. ArrDelay, DepDelay, Origin, Dest, Distance, TaxiIn, TaxiOut, Cancelled,
-5. CancellationCode, Diverted, CarrierDelay, WeatherDelay, NASDelay,
-   SecurityDelay,
-6. LateAircraftDelay
-7. Write a Pig script that satisfies all of the following criteria:
-   * Load all of the data in /user/horton/flightdelays
-   * Remove all rows in the flightdelays data where the DepTime column equals
-     the string "NA".
-   * The output should only contain
-     the Year, Month, DayofMonth, DepTime, UniqueCarrier, FlightNum, ArrDelay, Origin and Dest
+Repare ue os arquivos CSV `flightdelays` que importamos para o HDFS contem
+dados histórios de atrasos de voos. As columas possuem o seguinte esquema:
 
-Store the result as comma-separated records in a new directory in HDFS
-named /user/horton/flightdelays_clean Save the script in a file
-named flightdelays_clean.pig and save it in
-the /home/horton/solutions directory on the local filesystem of the client
-machine.
+> `Year, Month, DayofMonth, DayOfWeek, DepTime, CRSDepTime, ArrTime, CRSArrTime,
+UniqueCarrier, FlightNum, TailNum, ActualElapsedTime, CRSElapsedTime, AirTime,
+ArrDelay, DepDelay, Origin, Dest, Distance, TaxiIn, TaxiOut, Cancelled,
+CancellationCode, Diverted, CarrierDelay, WeatherDelay, NASDelay,
+SecurityDelay, LateAircraftDelay`
+
+Escreva um script no Pig que satisfaça os seguintes critérios:
+
+* Carregue todos os dados presentes em `/user/horton/flightdelays`.
+* Remova todas as linhas do conjunto de dados em que a coluna DepTime é igual a `NA`.
+* A saída deve conter apenas as seguintes colunas:
+  `Year, Month, DayofMonth, DepTime, UniqueCarrier, FlightNum, ArrDelay, Origin, Dest`
+
+Em seguida, aramazene o resultado como uma rquivo separado por vírgulas em um
+novo directório no HDFS chamado `/user/horton/flightdelays_clean`. Salve o
+script em um arquivo chamado `flightdelays_clean.pig` e salve no diretório
+`/home/horton/solutions` no sistema local na máquina cliente.
+
 
 ## TASK 03
 
