@@ -280,7 +280,7 @@ permite processar dados de forma mais prática do que se fôssemos usar
 diretamente o *MapReduce*.
 
 Nós podemos processar dados através um um ambiente REPL
-(*Read-Eval-Print-Loop*) ichamado *Grunt* ou através de execução de scripts
+(*Read-Eval-Print-Loop*) chamado *Grunt* ou através de execução de scripts
 criados no nosso editor de preferência. Vamos ver aqui um exemplo simples de
 script e como executá-lo, mas saiba que é possível rodar o script linha a linha
 no ambiente REPL.
