@@ -77,6 +77,42 @@ novo directório no HDFS chamado `/user/horton/flightdelays_clean`. Salve o
 script em um arquivo chamado `flightdelays_clean.pig` e salve no diretório
 `/home/horton/solutions` no sistema local na máquina cliente.
 
+<details>
+<summary><b>Solução</b></summary>
+
+O código abaixo exemplifica uma solução.
+
+```
+/* flightdelays_clean.pig
+Limpa o conjunto de dados de atarso de voos
+*/
+
+-- carregando os dados
+flightdelays = LOAD '/user/horton/flightdelays/flight*'
+               USING PigStorage(',')
+               AS (Year, Month, DayofMonth, DayOfWeek, DepTime, CRSDepTime,
+                   ArrTime, CRSArrTime, UniqueCarrier, FlightNum, TailNum,
+                   ActualElapsedTime, CRSElapsedTime, AirTime, ArrDelay,
+                   DepDelay, Origin, Dest, Distance, TaxiIn, TaxiOut,
+                   Cancelled, CancellationCode, Diverted, CarrierDelay,
+                   WeatherDelay,NASDelay, SecurityDelay, LateAircraftDelay);
+-- Remove as linhas em que DepTime = NA
+no_missing =  FILTER flightdelays BY (chararray)DepTime != 'NA';
+-- Mantem apenas as colunas desejadas
+subset = FOREACH no_missing GENERATE Year, Month, DayofMonth, DepTime, UniqueCarrier, FlightNum, ArrDelay, Origin, Dest;
+-- Salva os arquivos
+STORE subset INTO '/user/horton/flightdelays_clean' USING PigStorage(',');
+```
+
+Devemos copiar o código e salvar em um arquivo chamado `flightdelays_clean.csv`
+em `/home/horton/solutions`. Para rodá-lo, executamos o seguinte comando no
+terminal:
+
+```
+# pig -x tez /home/horton/flightdelays_clean.pig`
+```
+
+</details>
 
 ## TASK 03
 
