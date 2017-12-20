@@ -108,7 +108,7 @@ de dados MySQL chamado `ecommerce.db` para dentro do HDFS not formato texto:
 
 ```
 $ sqoop import \
-      --connect jdbc:mysql://database.example.com/ecommerce.db \
+      --connect jdbc:mysql://database.example.com:3306/ecommerce.db \
       --username fulano \
       --password 123456 \
       --table vendas \
