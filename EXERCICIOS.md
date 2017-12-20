@@ -2,6 +2,18 @@
 
 Os exercícios a seguir foram retirados do simulado da Hortonworks.
 
+* [TASK 1](#task-1)
+* [TASK 2](#task-2)
+* [TASK 3](#task-3)
+* [TASK 4](#task-4)
+* [TASK 5](#task-5)
+* [TASK 6](#task-6)
+* [TASK 7](#task-7)
+* [TASK 8](#task-8)
+* [TASK 9](#task-9)
+* [TASK 10](#task-10)
+
+
 ## TASK 01
 Import a File into HDFS
 
