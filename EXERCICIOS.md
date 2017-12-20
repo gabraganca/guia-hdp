@@ -129,13 +129,66 @@ terminal:
    de Denver ( código `DEN`). Salve o *script* na máquina cliente em
    `/home/horton/solutions/denver_total.pig` e armazene o resultado do *script*
    em um novo diretório no HDFS nomeado `denver_total`.
-
 3. A coluna `ArrDelay` é o número em minutos em que um voo chegou atrasado.
    Escreva um *script* em Pig que conta o número de voos atrasados que `Dest` é
    igual ao aeroporto `DEN` e que teve 60 minutos ou mais de atraso. Salve o
    *script*  na máquina local em `/home/horton/solutions/denver_late.pig` e
    armazene o resultado do *script* no HDFS em um diretório chamado
    `denver_late`.
+
+<details>
+<summary><b>Solução</b></summary>
+
+1. Salve o script abaixo em `/home/horton/solutions/cleaned_total.pig`:
+   ```
+   /* cleaned_total.pig
+   Conta o número de entrdas no arquivo cleaned_total
+   */
+   -- Carrega o dataset
+   dataset = LOAD '/user/horton/flightdelays_clean' USING PigStorage(',')
+             AS (Year, Month, DayofMonth, DepTime, UniqueCarrier, FlightNum,
+                 ArrDelay, Origin, Dest);
+   -- Conta o numero de entradas
+   total = FOREACH (GROUP dataset ALL) GENERATE COUNT_STAR(dataset);
+   -- Armazena o valor
+   STORE total INTO '/user/horton/cleaned_total';
+   ```
+2. Salve o script abaixo em `/home/horton/solutions/denver_total.pig`:
+   ```
+   /* denver_total.pig
+   Conta o número de voos cujo destino e Denver.
+   */
+   -- Carrega o dataset
+   dataset = LOAD '/user/horton/flightdelays_clean' USING PigStorage(',')
+             AS (Year, Month, DayofMonth, DepTime, UniqueCarrier, FlightNum,
+                 ArrDelay, Origin, Dest);
+   -- Filtra Denver
+   only_denver = FILTER dataset BY (chararray)Dest == 'DEN';
+   -- Conta o numero de entradas
+   total = FOREACH (GROUP only_denver ALL) GENERATE COUNT_STAR(only_denver);
+   -- Armazena o valor
+   STORE total INTO '/user/horton/denver_total';
+   ```
+3. Salve o script abaixo em `/home/horton/solutions/denver_late.pig`:
+   ```
+   /* denver_late.pig
+   Conta o número de voos cujo destino e Denver e
+   tenham atraso de 60 minutos ou mais
+   */
+   -- Carrega o dataset
+   dataset = LOAD '/user/horton/flightdelays_clean' USING PigStorage(',')
+             AS (Year, Month, DayofMonth, DepTime, UniqueCarrier, FlightNum,
+                 ArrDelay, Origin, Dest);
+   -- Filtra Denver
+   late_denver = FILTER dataset BY (chararray)Dest == 'DEN' AND (int)ArrDelay>=60;
+   -- Conta o numero de entradas
+   total = FOREACH (GROUP late_denver ALL) GENERATE COUNT_STAR(late_denver);
+   -- Armazena o valor
+   STORE total INTO '/user/horton/denver_late';
+   ```
+
+</details>
+
 
 ## TASK 04
 
