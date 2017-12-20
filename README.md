@@ -512,7 +512,7 @@ precisaremos usar a *flag* `-useHCatalog`, tanto se estivermos rodando um
 script quanto para abrir o *grunt*:
 
 ```
-$ pig  -useHCatalog
+$ pig -useHCatalog
 ...
 grunt> A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
 grunt> STORE A INTO 'nome_da_db.vendas' using org.apache.hive.hcatalog.pig.HCatStorer();
