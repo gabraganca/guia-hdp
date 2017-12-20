@@ -2,15 +2,15 @@
 
 Os exercícios a seguir foram retirados do simulado da Hortonworks.
 
-* [TASK 1](#task-1)
-* [TASK 2](#task-2)
-* [TASK 3](#task-3)
-* [TASK 4](#task-4)
-* [TASK 5](#task-5)
-* [TASK 6](#task-6)
-* [TASK 7](#task-7)
-* [TASK 8](#task-8)
-* [TASK 9](#task-9)
+* [TASK 1](#task-01)
+* [TASK 2](#task-02)
+* [TASK 3](#task-03)
+* [TASK 4](#task-04)
+* [TASK 5](#task-05)
+* [TASK 6](#task-06)
+* [TASK 7](#task-07)
+* [TASK 8](#task-08)
+* [TASK 9](#task-09)
 * [TASK 10](#task-10)
 
 
