@@ -10,7 +10,7 @@ no diretório `datasets`.
 
 * [Exercício 1](#exerc%C3%ADcio-1)
 * [Exercício 2](#exerc%C3%ADcio-2)
-* [TASK 3](#task-03)
+* [Exercício 3](#exerc%C3%ADcio-3)
 * [TASK 4](#task-04)
 * [TASK 5](#task-05)
 * [TASK 6](#task-06)
@@ -114,25 +114,28 @@ terminal:
 
 </details>
 
-## TASK 03
+## Exercício 3
 
-Analyze Data using Pig
+**Analise dados usando o Pig**
 
-1. Write a Pig script saved on the client machine
-   as /home/horton/solutions/cleaned_total.pig that calculates the number of
-rows in the /user/horton/flightdelays_cleanfiles in HDFS. Store the output of
-your script in a new directory in HDFS named cleaned_total.
-2. The Dest column is the destination airport code where the flight ends. Write
-   a Pig script saved on the client machine
-as /home/horton/solutions/denver_total.pig that calculates the number of rows
-in the /user/horton/flightdelays_clean data where the Dest field equals the
-Denver airport code "DEN". Store the output of your script in a new directory
-in HDFS named denver_total.
-3. The ArrDelay column is the number of minutes that a flight arrived late.
-   Write a Pig script saved on the client machine
-as /home/horton/solutions/denver_late.pig that counts the number of flights
-whose Dest is the "DEN" airport that arrived 60 or more mintues late. Store the
-output of your script in a new directory in HDFS named denver_late
+1. Escreva um *script* em Pig e salve na máquia cliente em
+   `/home/horton/solutions/` com o nome `cleaned_total.pig`. Este *script* deve
+   calcular o número de linhas no conjunto de dados
+   `/user/horton/flightdelays_cleanfiles` presentes no HDFS. Armazene o resultado
+   do *script* em um novo diretório no HDFS nomeado `cleaned_total`.
+2. A coluna `Dest` é código do aeroporto de destino do voo. Escreva um *script*
+   em Pig que calcule o número de linhas no conjunto de dados
+   `/user/horton/flightdelays_clean` em que o campo `Dest` é igual ao aeroporto
+   de Denver ( código `DEN`). Salve o *script* na máquina cliente em
+   `/home/horton/solutions/denver_total.pig` e armazene o resultado do *script*
+   em um novo diretório no HDFS nomeado `denver_total`.
+
+3. A coluna `ArrDelay` é o número em minutos em que um voo chegou atrasado.
+   Escreva um *script* em Pig que conta o número de voos atrasados que `Dest` é
+   igual ao aeroporto `DEN` e que teve 60 minutos ou mais de atraso. Salve o
+   *script*  na máquina local em `/home/horton/solutions/denver_late.pig` e
+   armazene o resultado do *script* no HDFS em um diretório chamado
+   `denver_late`.
 
 ## TASK 04
 
