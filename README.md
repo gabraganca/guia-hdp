@@ -181,13 +181,13 @@ Para maiores detalhes, recomendo a [documentação][IMPORTING DATA INTO HIVE] e
 [sqoop-hive]: https://dzone.com/articles/sqoop-import-data-from-mysql-to-hive
 
 
-### Insira ou atualize dados do HDFS para um tabela de uma banco de dados relacional
+### Insira ou atualize dados do HDFS para uma tabela de uma banco de dados relacional
 
-Além de inserir tabelas de um banco de dados relaciona para o HDFS, o `sqoop`
-também nos permite fazer o processo contrário. vamos ver agora como exportar
+Além de inserir tabelas de um banco de dados relacional para o HDFS, o `sqoop`
+também nos permite fazer o processo contrário. Vamos ver agora como exportar
 uma tabela do HDFS para um banco de dados.
 
-Ao invés do `import` nós devemos suar o `export`, e alguns dos argumentos são os mesmos, tais quais
+Ao invés do `import` nós devemos usar o `export`, e alguns dos argumentos são os mesmos, tais quais
 `--connect <jdbc-uri>`, `--username` e `--password`. Vamos ver um exemplo:
 
 ```
@@ -204,7 +204,7 @@ O comando acima vai exportar uma tabela localizada no diretório
 `ecommerce.db`.
 
 O comando `export` aceita outros argumentos e recomendo a
-[documentação][SQOOP-EXPORT] para uma melhor explicaçação.
+[documentação][SQOOP-EXPORT] para uma melhor explicação.
 
 [SQOOP-EXPORT]: http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_literal_sqoop_export_literal
 
