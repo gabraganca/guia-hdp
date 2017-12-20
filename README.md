@@ -79,7 +79,7 @@ usar o argumento `--connect` que vai permitir que o `sqoop` se conecte ao banco
 de dados. Por exemplo:
 ```
 $ sqoop import \
-      --connect jdbc:mysql://database.example.com/employees
+      --connect jdbc:mysql://database.example.com:3306/employees
 ```
 
 No exemplo acima, o `sqoop` se conectará a uma base de dados MySQL nomeada
