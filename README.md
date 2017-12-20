@@ -21,7 +21,7 @@ Este é um trabalho em elaboração. As seguintes etapas precisam ser feitas:
    * [Inicie um agente do Flume a partir de um arquivo de configuração](#inicie-um-agente-do-flume-a-partir-de-um-arquivo-de-configura%C3%A7%C3%A3o)
    * [Configure um `channel` de memória com um tamanho específico](#configure-um-channel-de-mem%C3%B3ria-com-um-tamanho-espec%C3%ADfico)
 2. [Transformação de Dados](#transforma%C3%A7%C3%A3o-de-dados)
-   * [Escreva execute um script do Pig](#escreva-a-execute-um-script-do-pig)
+   * [Escreva execute um *script* do Pig](#escreva-a-execute-um-script-do-pig)
    * [Carregue dados para uma relação do Pig sem definir um esquema](#carregue-dados-para-uma-rela%C3%A7%C3%A3o-do-pig-sem-definir-um-esquema)
    * [Carregue dados para uma relação do Pig definindo um esquema](#carregue-dados-para-uma-rela%C3%A7%C3%A3o-do-pig-definindo-um-esquema)
    * [Carregue dados de uma tabela do Hive para uma relação do Pig](#carregue-dados-de-uma-tabela-do-hive-para-uma-rela%C3%A7%C3%A3o-do-pig)
@@ -31,10 +31,10 @@ Este é um trabalho em elaboração. As seguintes etapas precisam ser feitas:
    * [Use o Pig para remover valores ausentes em uma relação](#use-o-pig-para-remover-valores-ausentes-em-uma-rela%C3%A7%C3%A3o)
    * [Armazene os dados de uma relação no Pig em uma pasta no HDFS](#armazene-os-dados-de-uma-rela%C3%A7%C3%A3o-no-pig-em-uma-pasta-no-hdfs)
    * [Armazene os dados de uma relação no Pig em uma tabela do Hive](#armazene-os-dados-de-uma-rela%C3%A7%C3%A3o-no-pig-em-uma-tabela-do-hive)
-   * Sort the output of a Pig relation
-   * Remove the duplicate tuples of a Pig relation
-   * Specify the number of reduce tasks for a Pig MapReduce job
-   * Join two datasets using Pig
+   * [Ordene a saída de uma relação do Pig](#ordene-a-sa%C3%ADda-de-uma-rela%C3%A7%C3%A3o-do-pig)
+   * [Remove as tuplas duplicadas de uma relação do Pig](#remove-as-tuplas-duplicadas-de-uma-rela%C3%A7%C3%A3o-do-pig)
+   * [Especifique o número de *reducers* a serem usados no Pig](#especifique-o-n%C3%BAmero-de-reducers-a-serem-usados-no-pig)
+   * [Junte dois datasets usando o Pig](#junte-dois-datasets-usando-o-pig)
    * Perform a replicated join using Pig
    * Run a Pig job using Tez
    * Within a Pig script, register a JAR file of User Defined Functions
@@ -187,8 +187,9 @@ Além de inserir tabelas de um banco de dados relacional para o HDFS, o `sqoop`
 também nos permite fazer o processo contrário. Vamos ver agora como exportar
 uma tabela do HDFS para um banco de dados.
 
-Ao invés do `import` nós devemos usar o `export`, e alguns dos argumentos são os mesmos, tais quais
-`--connect <jdbc-uri>`, `--username` e `--password`. Vamos ver um exemplo:
+Ao invés do `import` nós devemos usar o `export`, e alguns dos argumentos são 
+os mesmos, tais quais `--connect <jdbc-uri>`, `--username` e `--password`. 
+Vamos ver um exemplo:
 
 ```
 $ sqoop export \
@@ -273,19 +274,19 @@ exemplifica os outros tipos de `channels`.
 
 ## Transformação de Dados
 
-### Escreva a execute um script do Pig
+### Escreva a execute um  *script* do Pig
 
 O Pig é uma ferramenta de alto nível para processamento de dados. Ele nos
 permite processar dados de forma mais prática do que se fôssemos usar
 diretamente o *MapReduce*.
 
 Nós podemos processar dados através um um ambiente REPL
-(*Read-Eval-Print-Loop*) chamado *Grunt* ou através de execução de scripts
+(*Read-Eval-Print-Loop*) chamado *Grunt* ou através de execução de *scripts*
 criados no nosso editor de preferência. Vamos ver aqui um exemplo simples de
-script e como executá-lo, mas saiba que é possível rodar o script linha a linha
+script e como executá-lo, mas saiba que é possível rodar o *script* linha a linha
 no ambiente REPL.
 
-Vamos ver um script simples obtido da [documentação][pig_run]:
+Vamos ver um *script* simples obtido da [documentação][pig_run]:
 
 ```
 /* meu_script.pig
@@ -526,24 +527,87 @@ Para maioes detalhes, veja a [documentação][pig_hive].
 [pig_hive]: https://cwiki.apache.org/confluence/display/Hive/HCatalog+LoadStore
 
 
-### Sort the output of a Pig relation
+### Ordene a saída de uma relação do Pig
 
-  [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#order-by)
+Para ordernar uma tabela nós usmaos o `ORDER BY`:
+
+```
+A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
+B = ORDER A BY preco;
+C = ORDER A BY qtde DESC;
+```
+Por padrão, o Pig ordena de forma crescente, que é eemplificado na segunda
+linha do código acima (relação `B`). Para ordernar de forma descendente, nós
+usamos o argumento `DESC`, exemplificado na terciera linha na relação `C`).
+
+A [documentação][pig_orderby] traz mais exemplos.
+
+[pig_orderby]: https://pig.apache.org/docs/r0.15.0/basic.html#order-by
 
 
-### Remove the duplicate tuples of a Pig relation
+### Remove as tuplas duplicadas de uma relação do Pig
 
-  [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#distinct)
+Um outro processo de manuseio de dados muito importante é a remoção de
+duplicatas, e para isso, nós utilizamos o `DISTINCT`.
+
+```
+B = DISTINCT A
+```
+
+Este comando vai retornar apenas as tuplas distintas. Vale notar aqui que cada
+linha da tabela vai ser tratada como se fosse uma tupla, assim o `DISTINCT só
+verifica por linhas distintas. Em caso de duplictas, o Pig retorna apenas uma
+tupla e descarta as outras.
+
+Veja a [documentação][pig_distinct] para maiores detalhes.
+
+[pig_distinct]: https://pig.apache.org/docs/r0.15.0/basic.html#distinct
 
 
-### Specify the number of reduce tasks for a Pig MapReduce job
+### Especifique o número de *reducers* a serem usados no Pig
 
-  [LEARN MORE](https://pig.apache.org/docs/r0.15.0/perf.html#parallel)
+O Pig nos permite definir manualmente o número de * reducers*  a serem usados
+em suas tarefas *MapReduce*. Veja que só podemos faer isto para os *reducers* ;
+a quantidade de paraleleismo para os *maps* é definido pela arquivo de entrada
+(um *map* para cada bloco no HDFS).
+
+No exemplor abaixo, mostro como executar 10 *reducers* num processo de
+agrupamento:
+
+```
+A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
+B = GROUP A BY item PARALLEL 10;
+```
+
+Podemos também definir globalmente a quantidade de reducers em nossos *scripts*:
+
+```
+SET default_parallel 10;
+A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
+B = GROUP A BY item ;
+```
+
+Caos o nível de paralelismo não tenha sido defiido manualmente, o Pig decidirá
+por você. Para maiores detalhes, recomendo a [documentação][pig_parallel].
+
+[pig_parallel]: https://pig.apache.org/docs/r0.15.0/perf.html#parallel
 
 
-### Join two datasets using Pig
+### Junte dois datasets usando o Pig
 
-  [LEARN MORE](https://pig.apache.org/docs/r0.15.0/basic.html#join-outer)
+Outro processo bem comum é juntar dois conjuntos de dados. Por padrão, o Pig
+faz um *outer join* e o usuário pode definir o tipo: `LEFT`, `RIGHT` ou `FULL`.
+Vamos ver um exemploi de um *left outer join*:
+
+```
+A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
+B = LOAD 'estoque' AS (item_nome:chararray, qtde_estoque:int);
+C = JOIN A BY item LEFT OUTER, B BY item_nome;
+```
+
+Para mais exemplos e detalhes, sugiro ler a [documentação](pig_join):
+
+[pig_join]: https://pig.apache.org/docs/r0.15.0/basic.html#join-outer
 
 
 ### Perform a replicated join using Pig
