@@ -5,8 +5,8 @@ Hortonworks.
 
 ## Sumário
 
-* Conteúdo dos objetivos do exame
-* Lista de exercícios
+* [Conteúdo dos objetivos do exame](OBJETIVOS.md)
+* [Lista de exercícios](EXERCICIOS.md)
 
 
 ## TO DO
