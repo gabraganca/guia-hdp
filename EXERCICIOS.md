@@ -1,6 +1,12 @@
 # Lista de Exercícios
 
-Os exercícios a seguir foram retirados do simulado da Hortonworks.
+Os exercícios a seguir foram retirados do simulado da Hortonworks. Clique em
+**Solução** para mostrar a resposta.
+
+Alguns exercícios apontam para conjuntos de dados presentes na máquina virtual
+na AWS da Hortonworks que foi criada para praticar para o exame. Para sua
+praticidade, este conjuntos de dados foram replicados neste diretório e estão
+no diretório `datasets`.
 
 * [Exercício 1](#exercicio-1)
 * [TASK 2](#task-02)
@@ -22,6 +28,29 @@ Os exercícios a seguir foram retirados do simulado da Hortonworks.
 2. Coloque os três arquivos presentes no diretório
    `/home/horton/datasets/flightdelays` da máquina local para o diretório
    `/user/horton/flightdelays` no HDFS
+
+<details>
+<summary>**Solução**</summary>
+
+1. Para criar um diretório em um sistema de arquivos, nós usamos o comando
+   `mkdir`. No HDFS, usamos este mesmo comando, mas como uma `flag` para o
+   comando `hadoop fs`:
+   ```
+   # hadoop fs -mkdir -p /user/horton/flightdelays
+   ```
+   Aqui, o `#` é o prompt de comando. Há casos que este prompt é o `>` ou o `$`.
+
+   Também usamos a flag `-p` que é passada para o `mkdir` para crirar diretórios
+   parentes caso não existam, e que, neste caso, são os diretórios `user` e
+   `horton`.
+
+2. Os arquivos estão presentes na pasta `datasets` nese repositório. Para
+   enviar para o HDFS, nós precisamos fazer:
+   ```
+   # hadoop fs -put flightdelays/* /user/horton/flightdelays/
+   ```
+
+</details>
 
 ## TASK 02
 
