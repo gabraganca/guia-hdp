@@ -2,7 +2,7 @@
 
 Os exercícios a seguir foram retirados do simulado da Hortonworks.
 
-* [TASK 1](#task-01)
+* [Exercício 1](#exercicio-1)
 * [TASK 2](#task-02)
 * [TASK 3](#task-03)
 * [TASK 4](#task-04)
@@ -14,12 +14,14 @@ Os exercícios a seguir foram retirados do simulado da Hortonworks.
 * [TASK 10](#task-10)
 
 
-## TASK 01
-Import a File into HDFS
+## Exercício 1
 
-1. Create a new directory in HDFS named /user/horton/flightdelays
-2. Put the three files from the /home/horton/datasets/flightdelays directory on
-   the local machine into the /user/horton/flightdelays directory in HDFS
+**Importe um arquivo para o HDFS**
+
+1. Crie um novo diretório no HDFS nomeado `/user/horton/flightdelays`.
+2. Coloque os três arquivos presentes no diretório
+   `/home/horton/datasets/flightdelays` da máquina local para o diretório
+   `/user/horton/flightdelays` no HDFS
 
 ## TASK 02
 
