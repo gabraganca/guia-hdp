@@ -17,7 +17,7 @@ Este é um trabalho em elaboração. As seguintes etapas precisam ser feitas:
    * [Importação de tabela de um RDBMS para o HDFS usando o Sqoop](#importe-dados-de-uma-tabela-em-uma-base-de-dados-relacional-para-o-hdfs)
    * [Importe os resultados de uma *query* a um banco de dados para o HDFS](#importe-os-resultados-de-uma-query-a-um-banco-de-dados-para-o-hdfs)
    * [Importe uma tabela de um banco de dados relacional para uma tabela do Hive](#importe-uma-tabela-de-um-banco-de-dados-relacional-para-uma-tabela-do-hive)
-   * [Insira ou atualize dados do HDFS para um tabela de uma banco de dados relacional](#insira-ou-atualize-dados-do-hdfs-para-um-tabela-de-uma-banco-de-dados-relacional)
+   * [Insira ou atualize dados do HDFS para um tabela de uma banco de dados relacional](#insira-ou-atualize-dados-do-hdfs-para-uma-tabela-de-um-banco-de-dados-relacional)
    * [Inicie um agente do Flume a partir de um arquivo de configuração](#inicie-um-agente-do-flume-a-partir-de-um-arquivo-de-configura%C3%A7%C3%A3o)
    * [Configure um `channel` de memória com um tamanho específico](#configure-um-channel-de-mem%C3%B3ria-com-um-tamanho-espec%C3%ADfico)
 2. [Transformação de Dados](#transforma%C3%A7%C3%A3o-de-dados)
@@ -79,7 +79,7 @@ usar o argumento `--connect` que vai permitir que o `sqoop` se conecte ao banco
 de dados. Por exemplo:
 ```
 $ sqoop import \
-      --connect jdbc:mysql://database.example.com/employees
+      --connect jdbc:mysql://database.example.com:3306/employees
 ```
 
 No exemplo acima, o `sqoop` se conectará a uma base de dados MySQL nomeada
@@ -108,7 +108,7 @@ de dados MySQL chamado `ecommerce.db` para dentro do HDFS not formato texto:
 
 ```
 $ sqoop import \
-      --connect jdbc:mysql://database.example.com/ecommerce.db \
+      --connect jdbc:mysql://database.example.com:3306/ecommerce.db \
       --username fulano \
       --password 123456 \
       --table vendas \
@@ -136,7 +136,7 @@ Por exemplo:
 
 ```
 $ sqoop import \
-      --connect jdbc:mysql://database.example.com/ecommerce.db \
+      --connect jdbc:mysql://database.example.com:3306/ecommerce.db \
       --username fulano \
       --password 123456 \
       --query 'SELECT vendas.*, fornecedores.* FROM vendas JOIN fornecedores on (vendas.forn_id == fornecedores.id) WHERE vendas.preco > 5000' \
@@ -165,7 +165,7 @@ Vamos ver um exemplo:
 
 ```
 $ sqoop import \
-      --connect jdbc:mysql://database.example.com/ecommerce.db \
+      --connect jdbc:mysql://database.example.com:3306/ecommerce.db \
       --username fulano \
       --password 123456 \
       --table vendas \
@@ -181,19 +181,19 @@ Para maiores detalhes, recomendo a [documentação][IMPORTING DATA INTO HIVE] e
 [sqoop-hive]: https://dzone.com/articles/sqoop-import-data-from-mysql-to-hive
 
 
-### Insira ou atualize dados do HDFS para um tabela de uma banco de dados relacional
+### Insira ou atualize dados do HDFS para uma tabela de um banco de dados relacional
 
-Além de inserir tabelas de um banco de dados relaciona para o HDFS, o `sqoop`
+Além de inserir tabelas de um banco de dados relacional para o HDFS, o `sqoop`
 também nos permite fazer o processo contrário. Vamos ver agora como exportar
 uma tabela do HDFS para um banco de dados.
 
-Ao invés do `import` nós devemos suar o `export`, e alguns dos argumentos são
-os mesmos, tais quais `--connect <jdbc-uri>`, `--username` e `--password`.
+Ao invés do `import` nós devemos usar o `export`, e alguns dos argumentos são 
+os mesmos, tais quais `--connect <jdbc-uri>`, `--username` e `--password`. 
 Vamos ver um exemplo:
 
 ```
 $ sqoop export \
-      --connect jdbc:mysql://database.example.com/ecommerce.db \
+      --connect jdbc:mysql://database.example.com:3306/ecommerce.db \
       --username fulano \
       --password 123456 \
       --table vendas \
@@ -513,7 +513,7 @@ precisaremos usar a *flag* `-useHCatalog`, tanto se estivermos rodando um
 script quanto para abrir o *grunt*:
 
 ```
-$ pig  -useHCatalog
+$ pig -useHCatalog
 ...
 grunt> A = LOAD 'vendas' AS (item:chararray, preco:float, qtde:int);
 grunt> STORE A INTO 'nome_da_db.vendas' using org.apache.hive.hcatalog.pig.HCatStorer();
