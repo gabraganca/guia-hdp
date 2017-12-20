@@ -181,7 +181,7 @@ Para maiores detalhes, recomendo a [documentação][IMPORTING DATA INTO HIVE] e
 [sqoop-hive]: https://dzone.com/articles/sqoop-import-data-from-mysql-to-hive
 
 
-### Insira ou atualize dados do HDFS para uma tabela de uma banco de dados relacional
+### Insira ou atualize dados do HDFS para uma tabela de um banco de dados relacional
 
 Além de inserir tabelas de um banco de dados relacional para o HDFS, o `sqoop`
 também nos permite fazer o processo contrário. Vamos ver agora como exportar
