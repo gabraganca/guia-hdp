@@ -136,7 +136,7 @@ Por exemplo:
 
 ```
 $ sqoop import \
-      --connect jdbc:mysql://database.example.com/ecommerce.db \
+      --connect jdbc:mysql://database.example.com:3306/ecommerce.db \
       --username fulano \
       --password 123456 \
       --query 'SELECT vendas.*, fornecedores.* FROM vendas JOIN fornecedores on (vendas.forn_id == fornecedores.id) WHERE vendas.preco > 5000' \
@@ -165,7 +165,7 @@ Vamos ver um exemplo:
 
 ```
 $ sqoop import \
-      --connect jdbc:mysql://database.example.com/ecommerce.db \
+      --connect jdbc:mysql://database.example.com:3306/ecommerce.db \
       --username fulano \
       --password 123456 \
       --table vendas \
@@ -192,7 +192,7 @@ Ao invés do `import` nós devemos usar o `export`, e alguns dos argumentos são
 
 ```
 $ sqoop export \
-      --connect jdbc:mysql://database.example.com/ecommerce.db \
+      --connect jdbc:mysql://database.example.com:3306/ecommerce.db \
       --username fulano \
       --password 123456 \
       --table vendas \
