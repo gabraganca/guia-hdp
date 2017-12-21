@@ -200,13 +200,36 @@ armazenados no HDFS no directório `/user/horton/flightdelays_clean`.  A tabela
 do Hive deve satisfazer os seguintes critérios:
 
 * Uma tabela extrena com sua localalização configurada para
-  `/uder/horton/flightdelays_clean`.
+  `/user/horton/flightdelays_clean`.
 * O esquema corresponde às colunas
   `Year`, `Month`, `DayOfMonth`, `DepTime`, `UniqueCarrier`, `FlightNum`, 
    `ArrDelay`, `Origin ` e `Dest`.
 * As colunas `UniqueCarrier`, `Origin` e `Dest` são do tipo `string` e as
   outras são do tipo inteiro.
 
+<details>
+<summary><b>Solução</b></summary>
+
+Abra o Hive no terminal ou no Ambari e execute os seguintes comandos:
+
+```
+CREATE EXTERNAL TABLE flightdelays (
+  Year INT,
+  Month INT,
+  DayOfMonth INT,
+  DepTime INT,
+  UniqueCarrier STRING,
+  FlightNum INT,
+  ArrDelay INT,
+  Origin STRING,
+  Dest STRING
+  )
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION '/user/horton/flightdelays_clean';
+```
+
+</details>
 
 ## TASK 05
 
