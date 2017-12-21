@@ -11,6 +11,7 @@ no diretório `datasets`.
 * [Exercício 1](#exerc%C3%ADcio-1)
 * [Exercício 2](#exerc%C3%ADcio-2)
 * [Exercício 3](#exerc%C3%ADcio-3)
+* [Exercício 4](#exerc%C4%ADcio-4)
 * [TASK 4](#task-04)
 * [TASK 5](#task-05)
 * [TASK 6](#task-06)
@@ -190,17 +191,22 @@ terminal:
 </details>
 
 
-## TASK 04
+## Exercício 4
 
-Define a Hive Table
+**Defina uma tabela no Hive**
 
-1. Define a Hive table named flightdelays that matches the data stored in
-   your /user/horton/flightdelays_clean directory in HDFS. The Hive table
-should satisfy all of the following criteria: An external table with the
-location set to /user/horton/flightdelays_clean The schema matches the
-columns Year, Month, DayOfMonth, DepTime, UniqueCarrier, FlightNum, ArrDelay, Origin and Dest
-The UniqueCarrier, Origin and Dest columns are string types; the other columns
-are all integers
+Defina uma tabela no Hive noemada `flightdelays` que corresponde aos dados
+armazenados no HDFS no directório `/user/horton/flightdelays_clean`.  A tabela
+do Hive deve satisfazer os seguintes critérios:
+
+* Uma tabela extrena com sua localalização configurada para
+  `/uder/horton/flightdelays_clean`.
+* O esquema corresponde às colunas
+  `Year`, `Month`, `DayOfMonth`, `DepTime`, `UniqueCarrier`, `FlightNum`, 
+   `ArrDelay`, `Origin ` e `Dest`.
+* As colunas `UniqueCarrier`, `Origin` e `Dest` são do tipo `string` e as
+  outras são do tipo inteiro.
+
 
 ## TASK 05
 
